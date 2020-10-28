@@ -1,4 +1,6 @@
 import React from 'react'
+import Quiz from './Components/Quiz/Quiz'
+import styles from './App.module.css'
 
 class App extends React.Component {
 
@@ -12,7 +14,19 @@ class App extends React.Component {
   render() {
     const { showLogin } = this.state
     return (
-      <h1>{ showLogin.toString() }</h1>
+      <div className={styles.appWrapper}>
+        <header>
+
+        </header>
+      
+        <Quiz />
+        <div className={styles.brains}>
+          <img alt="" src="https://i.ibb.co/w7ZcC9s/mental-health.png" height="75px" width="75px" />
+          <img alt="" src="https://i.ibb.co/w7ZcC9s/mental-health.png" height="75px" width="75px" />
+          <img alt="" src="https://i.ibb.co/w7ZcC9s/mental-health.png" height="75px" width="75px" />
+          <img alt="" src="https://i.ibb.co/w7ZcC9s/mental-health.png" height="75px" width="75px" />
+        </div>
+      </div>
     )
   }
 }

@@ -1,5 +1,4 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./frontend/App.jsx":
@@ -9,14 +8,18 @@
 /*! namespace exports */
 /*! export default [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
+/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Components_Quiz_Quiz__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Components/Quiz/Quiz */ "./frontend/Components/Quiz/Quiz.jsx");
+/* harmony import */ var _App_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App.module.css */ "./frontend/App.module.css");
+/* harmony import */ var _App_module_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_App_module_css__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -41,6 +44,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
 var App = /*#__PURE__*/function (_React$Component) {
   _inherits(App, _React$Component);
 
@@ -62,7 +67,31 @@ var App = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var showLogin = this.state.showLogin;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, showLogin.toString());
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: (_App_module_css__WEBPACK_IMPORTED_MODULE_2___default().appWrapper)
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("header", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Components_Quiz_Quiz__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: (_App_module_css__WEBPACK_IMPORTED_MODULE_2___default().brains)
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        alt: "",
+        src: "https://i.ibb.co/w7ZcC9s/mental-health.png",
+        height: "75px",
+        width: "75px"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        alt: "",
+        src: "https://i.ibb.co/w7ZcC9s/mental-health.png",
+        height: "75px",
+        width: "75px"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        alt: "",
+        src: "https://i.ibb.co/w7ZcC9s/mental-health.png",
+        height: "75px",
+        width: "75px"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        alt: "",
+        src: "https://i.ibb.co/w7ZcC9s/mental-health.png",
+        height: "75px",
+        width: "75px"
+      })));
     }
   }]);
 
@@ -70,6 +99,142 @@ var App = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
+
+/***/ }),
+
+/***/ "./frontend/Components/Quiz/Question/Question.jsx":
+/*!********************************************************!*\
+  !*** ./frontend/Components/Quiz/Question/Question.jsx ***!
+  \********************************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _util_question_gen_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../util/question_gen_util */ "./frontend/util/question_gen_util.js");
+/* harmony import */ var _Question_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Question.module.css */ "./frontend/Components/Quiz/Question/Question.module.css");
+/* harmony import */ var _Question_module_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Question_module_css__WEBPACK_IMPORTED_MODULE_2__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+
+
+var Question = function Question(_ref) {
+  var question = _ref.question;
+
+  var answers = _toConsumableArray(question.incorrect);
+
+  answers.push(question.correct);
+  (0,_util_question_gen_util__WEBPACK_IMPORTED_MODULE_1__.shuffle)(answers);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: (_Question_module_css__WEBPACK_IMPORTED_MODULE_2___default().questionWrapper)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, question.question), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, answers.map(function (answer) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+      className: (_Question_module_css__WEBPACK_IMPORTED_MODULE_2___default().answer)
+    }, answer);
+  })));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Question);
+
+/***/ }),
+
+/***/ "./frontend/Components/Quiz/Quiz.jsx":
+/*!*******************************************!*\
+  !*** ./frontend/Components/Quiz/Quiz.jsx ***!
+  \*******************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Question_Question__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Question/Question */ "./frontend/Components/Quiz/Question/Question.jsx");
+/* harmony import */ var _util_question_gen_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/question_gen_util */ "./frontend/util/question_gen_util.js");
+/* harmony import */ var _Quiz_module_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Quiz.module.css */ "./frontend/Components/Quiz/Quiz.module.css");
+/* harmony import */ var _Quiz_module_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_Quiz_module_css__WEBPACK_IMPORTED_MODULE_3__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+var Quiz = function Quiz() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1),
+      _useState2 = _slicedToArray(_useState, 2),
+      questionNum = _useState2[0],
+      setQuestionNum = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_util_question_gen_util__WEBPACK_IMPORTED_MODULE_2__.getRandomQuestions)()),
+      _useState4 = _slicedToArray(_useState3, 2),
+      questions = _useState4[0],
+      setQuestions = _useState4[1]; // useEffect(() => {
+  //   const questions = getRandomQuestions()
+  // }, [])
+
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_3___default().quizWrapper)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Welcome! Click To Begin Your Quiz"), questionNum !== -1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Question_Question__WEBPACK_IMPORTED_MODULE_1__.default, {
+    question: questions[questionNum]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_3___default().buttonsWrapper)
+  }, questionNum !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_3___default().prevButton),
+    type: "button",
+    onClick: function onClick() {
+      return setQuestionNum(questionNum - 1);
+    }
+  }, "Previous") : null, questionNum !== questions.length - 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_3___default().nextButton),
+    type: "button",
+    onClick: function onClick() {
+      return setQuestionNum(questionNum + 1);
+    }
+  }, "Next") : null)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button",
+    onClick: function onClick() {
+      return setQuestionNum(0);
+    }
+  }, " Begin "));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Quiz);
 
 /***/ }),
 
@@ -82,6 +247,7 @@ var App = /*#__PURE__*/function (_React$Component) {
 /*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
@@ -96,6 +262,425 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
+/***/ "./frontend/questions.json.js":
+/*!************************************!*\
+  !*** ./frontend/questions.json.js ***!
+  \************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+var questions = [{
+  "question": "What was Tandem previous name?",
+  "incorrect": ["Tandem", "Burger Shack", "Extraordinary Humans"],
+  "correct": "Devmynd"
+}, {
+  "question": "In Shakespeare's play Julius Caesar, Caesar's last words were...",
+  "incorrect": ["Iacta alea est!", "Vidi, vini, vici", "Aegri somnia vana"],
+  "correct": "Et tu, Brute?"
+}, {
+  "question": "A group of tigers are referred to as:",
+  "incorrect": ["Chowder", "Pride", "Destruction"],
+  "correct": "Ambush"
+}, {
+  "question": "What is the top speed an average cat can travel?",
+  "incorrect": ["42 mph", "13 mph", "9 mph"],
+  "correct": "31 mph"
+}, {
+  "question": "A cat can jump to _____ times its own height:",
+  "incorrect": ["3", "9", "7"],
+  "correct": "5"
+}, {
+  "question": "What is the only letter that doesn't appear in a US state name?",
+  "incorrect": ["M", "Z", "X"],
+  "correct": "Q"
+}, {
+  "question": "What is the name for a cow-bison hybrid?",
+  "incorrect": ["Cowson", "Bicow", "Mooson"],
+  "correct": "Beefalo"
+}, {
+  "question": "What is the largest freshwater lake in the world?",
+  "incorrect": ["Lake Baikal", "Lake Michigan", "Lake Victoria"],
+  "correct": "Lake Superior"
+}, {
+  "question": "In a website address bar, what does WWW stand for?",
+  "incorrect": ["Wild Wild West", "War World Web"],
+  "correct": "World Wide Web"
+}, {
+  "question": "In a game of bingo, what number is represented by the name two little ducks?",
+  "incorrect": ["20", "55", "77"],
+  "correct": "22"
+}, {
+  "question": "According to Greek mythology, who was the first woman on Earth?",
+  "incorrect": ["Lilith", "Eve", "Hera"],
+  "correct": "Pandora"
+}, {
+  "question": "In which European city would you find Orly airport?",
+  "incorrect": ["London", "Belgium", "Munich"],
+  "correct": "Paris"
+}, {
+  "question": "Where would you find the Sea of Tranquility?",
+  "incorrect": ["California", "Siberia", "China"],
+  "correct": "The Moon"
+}, {
+  "question": "Which artist painted 'Girl with a Pearl Earrin'?",
+  "incorrect": ["Van Gogh", "Picasso", "Da Vinci"],
+  "correct": "Vermeer"
+}, {
+  "question": "What is the official name for the 'hashtag' symbol?",
+  "incorrect": ["Number sign", "Hash Sign", "Pound"],
+  "correct": "Octothorpe"
+}, {
+  "question": "Not American at all, where is apple pie from?",
+  "incorrect": ["Japan", "Ethiopia", "Canada"],
+  "correct": "England"
+}, {
+  "question": "What is the national animal of Scotland?",
+  "incorrect": ["Bear", "Rabbit", "Seal"],
+  "correct": "Unicorn"
+}, {
+  "question": "Where in the world is the only place where Canada is *due south*",
+  "incorrect": ["Alaska", "Russia", "Washington"],
+  "correct": "Detroit"
+}, {
+  "question": "Approximately how many grapes go into a bottle of wine?",
+  "incorrect": ["500", "200", "1000"],
+  "correct": "700"
+}, {
+  "question": "How much does a US One Dollar Bill cost to make?",
+  "incorrect": ["$0.25", "$1", "$5"],
+  "correct": "$0.05"
+}, {
+  "question": "The Vatican bank has the only ATM in the world that allows users to do what?",
+  "incorrect": ["Receive withdrawls in rosary beads", "Vote for the Pope", "Purchase indulgences"],
+  "correct": "Perform transactions in Latin"
+}];
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (questions);
+
+/***/ }),
+
+/***/ "./frontend/util/question_gen_util.js":
+/*!********************************************!*\
+  !*** ./frontend/util/question_gen_util.js ***!
+  \********************************************/
+/*! namespace exports */
+/*! export getRandomQuestions [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export shuffle [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getRandomQuestions": () => /* binding */ getRandomQuestions,
+/* harmony export */   "shuffle": () => /* binding */ shuffle
+/* harmony export */ });
+/* harmony import */ var _questions_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../questions.json */ "./frontend/questions.json.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+/*eslint-disable*/
+
+function getRandomQuestions() {
+  var randQuestions = [];
+  var numQuestions = _questions_json__WEBPACK_IMPORTED_MODULE_0__.default.length;
+
+  var qs = _toConsumableArray(_questions_json__WEBPACK_IMPORTED_MODULE_0__.default);
+
+  for (var i = 0; i < 10; i++) {
+    var randNum = Math.floor(Math.random() * numQuestions);
+    randQuestions.push(qs[randNum]);
+    qs.splice(randNum, 1);
+    numQuestions--;
+  }
+
+  return randQuestions;
+}
+function shuffle(array) {
+  for (var i = array.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var _ref = [array[j], array[i]];
+    array[i] = _ref[0];
+    array[j] = _ref[1];
+  }
+}
+
+/***/ }),
+
+/***/ "./frontend/App.module.css":
+/*!*********************************!*\
+  !*** ./frontend/App.module.css ***!
+  \*********************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__, module.id */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var api = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+
+var content = __webpack_require__(/*! !!../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./App.module.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./frontend/App.module.css");
+
+content = content.__esModule ? content["default"] : content;
+
+if (typeof content === 'string') {
+  content = [[module.id, content, '']];
+}
+
+var options = {};
+options.insert = "head";
+options.singleton = false;
+var update = api(content, options);
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ "./frontend/Components/Quiz/Question/Question.module.css":
+/*!***************************************************************!*\
+  !*** ./frontend/Components/Quiz/Question/Question.module.css ***!
+  \***************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__, module.id */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var api = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+
+var content = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./Question.module.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./frontend/Components/Quiz/Question/Question.module.css");
+
+content = content.__esModule ? content["default"] : content;
+
+if (typeof content === 'string') {
+  content = [[module.id, content, '']];
+}
+
+var options = {};
+options.insert = "head";
+options.singleton = false;
+var update = api(content, options);
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ "./frontend/Components/Quiz/Quiz.module.css":
+/*!**************************************************!*\
+  !*** ./frontend/Components/Quiz/Quiz.module.css ***!
+  \**************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__, module.id */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var api = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+
+var content = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./Quiz.module.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./frontend/Components/Quiz/Quiz.module.css");
+
+content = content.__esModule ? content["default"] : content;
+
+if (typeof content === 'string') {
+  content = [[module.id, content, '']];
+}
+
+var options = {};
+options.insert = "head";
+options.singleton = false;
+var update = api(content, options);
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./frontend/App.module.css":
+/*!***************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./frontend/App.module.css ***!
+  \***************************************************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: __webpack_exports__, module, __webpack_require__, module.id */
+/***/ ((module, exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.id, "\nheader {\n  position: absolute;\n  top: 0px;\n  height: 60px;\n  width: 100vw;\n  background-color: black;\n  z-index: 99999999999;\n}\n\n.App-module__appWrapper--3ot_W {\n  width: 100%;\n  height: 100vh;\n  display: flex;\n  align-items: center;\n  flex-direction: column;\n  background: #11998e;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  position: absolute;\n  box-sizing: border-box;\n  overflow: hidden;\n  z-index: 100;\n\n}\n\n\n.App-module__brains--qPppA {\n  height: 100%;\n  width: 100%;\n\n}\n\n.App-module__brains--qPppA img{\nposition:absolute ;\ndisplay:block ;\nz-index: 101;\n}\n\n.App-module__brains--qPppA img:nth-child(1){\n    left:-10%;\n    bottom: 0%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:-3s;\n\n}\n.App-module__brains--qPppA img:nth-child(2){\n    left:0%;\n    bottom: 0%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:-2s;\n\n}\n.App-module__brains--qPppA img:nth-child(3){\n    left:10%;\n    bottom: -10%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:.5s;\n\n}\n.App-module__brains--qPppA img:nth-child(4){\n    left:20%;\n    bottom: -10%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:-1s;\n\n}\n\n@keyframes App-module__fall--7MXEB{\n    0%{\n      transform: translateY(0) translateX(0) rotate(0deg);\n\n    }\n    100%{\n        \n         transform: translateY(-1000px) translateX(750px) rotate(720deg);\n\n      }\n    }", ""]);
+// Exports
+exports.locals = {
+	"appWrapper": "App-module__appWrapper--3ot_W",
+	"brains": "App-module__brains--qPppA",
+	"fall": "App-module__fall--7MXEB"
+};
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./frontend/Components/Quiz/Question/Question.module.css":
+/*!*********************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./frontend/Components/Quiz/Question/Question.module.css ***!
+  \*********************************************************************************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: __webpack_exports__, module, __webpack_require__, module.id */
+/***/ ((module, exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.id, ".Question-module__questionWrapper--3ATVQ{ \n  /* border: 1px solid black; */\n  display: flex;\n  flex-direction: column;\n  border-radius: 5px;\n  width: 500px;\n  height: 400px;\n  margin-top: 100px;\n  padding: 20px;\n  /* background: #800080; \n  background: -webkit-linear-gradient(to right,#f5a1af, #800080);  \n  background: linear-gradient(to right, #f5a1af, #800080); */\n  background: #642B73;  /* fallback for old browsers */\nbackground: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */\nbackground: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: rgba(255, 255, 255, 0.795);\n  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  z-index: 200;\n}\n\n.Question-module__questionWrapper--3ATVQ > h2 {\n  margin: 5px;\n} \n\n.Question-module__answer--2Ktcv{\n  list-style: none;\n  border: 1px solid black;\n  border-radius: 5px;\n  padding: 10px;\n  margin: 5px;\n  font-size: 20px;\n  z-index: 99999;\n  cursor: pointer;\n  \n}\n\n.Question-module__answer--2Ktcv:hover {\n  background-color: thistle;\n}", ""]);
+// Exports
+exports.locals = {
+	"questionWrapper": "Question-module__questionWrapper--3ATVQ",
+	"answer": "Question-module__answer--2Ktcv"
+};
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./frontend/Components/Quiz/Quiz.module.css":
+/*!********************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./frontend/Components/Quiz/Quiz.module.css ***!
+  \********************************************************************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: __webpack_exports__, module, __webpack_require__, module.id */
+/***/ ((module, exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.id, ".Quiz-module__quizWrapper--1ekNE{ \n display: flex;\n flex-direction: column;\n width: 542px;\n position: relative;\n margin-top: 100px;\n\n\n}\n\n.Quiz-module__buttonsWrapper--2TSJ7 {\n  /* display: flex;\n  justify-content: space-between; */\n  width: 100%;\n  margin-top: 40px;\n  position: relative;\n}\n\n.Quiz-module__prevButton--EFVAY {\n  position: absolute;\n  left: 0px;\n  bottom: 0px;\n  border-radius: 5px;\n  background: #800080;  /* fallback for old browsers */\nbackground: -webkit-linear-gradient(to right, #ffc0cb, #800080);  /* Chrome 10-25, Safari 5.1-6 */\nbackground: linear-gradient(to right, #ffc0cb, #800080); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\ncolor: white;\npadding: 5px;\nwidth: 100px;\nborder: none;\ncursor: pointer;\nfont-weight: bold;\n\n\n\n\n\n}\n\n.Quiz-module__nextButton--30OK0 {\n  position: absolute;\n  right: 0px;\n  bottom: 0px;\n  border-radius: 5px;\nbackground: #642B73;  /* fallback for old browsers */\nbackground: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */\nbackground: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n\n\n\ncolor: white;\npadding: 5px;\nwidth: 100px;\nborder: none;\ncursor: pointer;\nfont-weight: bold;\n\n\n}", ""]);
+// Exports
+exports.locals = {
+	"quizWrapper": "Quiz-module__quizWrapper--1ekNE",
+	"buttonsWrapper": "Quiz-module__buttonsWrapper--2TSJ7",
+	"prevButton": "Quiz-module__prevButton--EFVAY",
+	"nextButton": "Quiz-module__nextButton--30OK0"
+};
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/api.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
+  \*****************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module */
+/***/ ((module) => {
+
+"use strict";
+
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+// eslint-disable-next-line func-names
+module.exports = function (useSourceMap) {
+  var list = []; // return the list of modules as css string
+
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = cssWithMappingToString(item, useSourceMap);
+
+      if (item[2]) {
+        return "@media ".concat(item[2], " {").concat(content, "}");
+      }
+
+      return content;
+    }).join('');
+  }; // import a list of modules into the list
+  // eslint-disable-next-line func-names
+
+
+  list.i = function (modules, mediaQuery, dedupe) {
+    if (typeof modules === 'string') {
+      // eslint-disable-next-line no-param-reassign
+      modules = [[null, modules, '']];
+    }
+
+    var alreadyImportedModules = {};
+
+    if (dedupe) {
+      for (var i = 0; i < this.length; i++) {
+        // eslint-disable-next-line prefer-destructuring
+        var id = this[i][0];
+
+        if (id != null) {
+          alreadyImportedModules[id] = true;
+        }
+      }
+    }
+
+    for (var _i = 0; _i < modules.length; _i++) {
+      var item = [].concat(modules[_i]);
+
+      if (dedupe && alreadyImportedModules[item[0]]) {
+        // eslint-disable-next-line no-continue
+        continue;
+      }
+
+      if (mediaQuery) {
+        if (!item[2]) {
+          item[2] = mediaQuery;
+        } else {
+          item[2] = "".concat(mediaQuery, " and ").concat(item[2]);
+        }
+      }
+
+      list.push(item);
+    }
+  };
+
+  return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+  var content = item[1] || ''; // eslint-disable-next-line prefer-destructuring
+
+  var cssMapping = item[3];
+
+  if (!cssMapping) {
+    return content;
+  }
+
+  if (useSourceMap && typeof btoa === 'function') {
+    var sourceMapping = toComment(cssMapping);
+    var sourceURLs = cssMapping.sources.map(function (source) {
+      return "/*# sourceURL=".concat(cssMapping.sourceRoot || '').concat(source, " */");
+    });
+    return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+  }
+
+  return [content].join('\n');
+} // Adapted from convert-source-map (MIT)
+
+
+function toComment(sourceMap) {
+  // eslint-disable-next-line no-undef
+  var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+  var data = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(base64);
+  return "/*# ".concat(data, " */");
+}
+
+/***/ }),
+
 /***/ "./node_modules/object-assign/index.js":
 /*!*********************************************!*\
   !*** ./node_modules/object-assign/index.js ***!
@@ -104,6 +689,7 @@ document.addEventListener('DOMContentLoaded', function () {
 /*! runtime requirements: module */
 /***/ ((module) => {
 
+"use strict";
 /*
 object-assign
 (c) Sindre Sorhus
@@ -218,6 +804,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 /*! runtime requirements: __webpack_exports__, __webpack_require__ */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 /** @license React v17.0.1
  * react-dom.development.js
  *
@@ -26500,6 +27087,7 @@ exports.version = ReactVersion;
 /*! runtime requirements: module, __webpack_require__ */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
 
 
 function checkDCE() {
@@ -26574,6 +27162,7 @@ if (false) {} else {
 /*! runtime requirements: __webpack_exports__, __webpack_require__ */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
 /** @license React v17.0.1
  * react.development.js
  *
@@ -28949,6 +29538,7 @@ exports.version = ReactVersion;
 /*! runtime requirements: module, __webpack_require__ */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
 
 
 if (false) {} else {
@@ -28976,6 +29566,7 @@ if (false) {} else {
 /*! runtime requirements: __webpack_exports__ */
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 /** @license React v0.20.1
  * scheduler-tracing.development.js
  *
@@ -29355,6 +29946,7 @@ exports.unstable_wrap = unstable_wrap;
 /*! runtime requirements: __webpack_exports__ */
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 /** @license React v0.20.1
  * scheduler.development.js
  *
@@ -30231,6 +30823,7 @@ exports.unstable_wrapCallback = unstable_wrapCallback;
 /*! runtime requirements: module, __webpack_require__ */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
 
 
 if (false) {} else {
@@ -30258,12 +30851,294 @@ if (false) {} else {
 /*! runtime requirements: module, __webpack_require__ */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
 
 
 if (false) {} else {
   module.exports = __webpack_require__(/*! ./cjs/scheduler-tracing.development.js */ "./node_modules/scheduler/cjs/scheduler-tracing.development.js");
 }
 
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
+  \****************************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__.nc, __webpack_require__.* */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+var isOldIE = function isOldIE() {
+  var memo;
+  return function memorize() {
+    if (typeof memo === 'undefined') {
+      // Test for IE <= 9 as proposed by Browserhacks
+      // @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+      // Tests for existence of standard globals is to allow style-loader
+      // to operate correctly into non-standard environments
+      // @see https://github.com/webpack-contrib/style-loader/issues/177
+      memo = Boolean(window && document && document.all && !window.atob);
+    }
+
+    return memo;
+  };
+}();
+
+var getTarget = function getTarget() {
+  var memo = {};
+  return function memorize(target) {
+    if (typeof memo[target] === 'undefined') {
+      var styleTarget = document.querySelector(target); // Special case to return head of iframe instead of iframe itself
+
+      if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+        try {
+          // This will throw an exception if access to iframe is blocked
+          // due to cross-origin restrictions
+          styleTarget = styleTarget.contentDocument.head;
+        } catch (e) {
+          // istanbul ignore next
+          styleTarget = null;
+        }
+      }
+
+      memo[target] = styleTarget;
+    }
+
+    return memo[target];
+  };
+}();
+
+var stylesInDom = [];
+
+function getIndexByIdentifier(identifier) {
+  var result = -1;
+
+  for (var i = 0; i < stylesInDom.length; i++) {
+    if (stylesInDom[i].identifier === identifier) {
+      result = i;
+      break;
+    }
+  }
+
+  return result;
+}
+
+function modulesToDom(list, options) {
+  var idCountMap = {};
+  var identifiers = [];
+
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i];
+    var id = options.base ? item[0] + options.base : item[0];
+    var count = idCountMap[id] || 0;
+    var identifier = "".concat(id, " ").concat(count);
+    idCountMap[id] = count + 1;
+    var index = getIndexByIdentifier(identifier);
+    var obj = {
+      css: item[1],
+      media: item[2],
+      sourceMap: item[3]
+    };
+
+    if (index !== -1) {
+      stylesInDom[index].references++;
+      stylesInDom[index].updater(obj);
+    } else {
+      stylesInDom.push({
+        identifier: identifier,
+        updater: addStyle(obj, options),
+        references: 1
+      });
+    }
+
+    identifiers.push(identifier);
+  }
+
+  return identifiers;
+}
+
+function insertStyleElement(options) {
+  var style = document.createElement('style');
+  var attributes = options.attributes || {};
+
+  if (typeof attributes.nonce === 'undefined') {
+    var nonce =  true ? __webpack_require__.nc : 0;
+
+    if (nonce) {
+      attributes.nonce = nonce;
+    }
+  }
+
+  Object.keys(attributes).forEach(function (key) {
+    style.setAttribute(key, attributes[key]);
+  });
+
+  if (typeof options.insert === 'function') {
+    options.insert(style);
+  } else {
+    var target = getTarget(options.insert || 'head');
+
+    if (!target) {
+      throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");
+    }
+
+    target.appendChild(style);
+  }
+
+  return style;
+}
+
+function removeStyleElement(style) {
+  // istanbul ignore if
+  if (style.parentNode === null) {
+    return false;
+  }
+
+  style.parentNode.removeChild(style);
+}
+/* istanbul ignore next  */
+
+
+var replaceText = function replaceText() {
+  var textStore = [];
+  return function replace(index, replacement) {
+    textStore[index] = replacement;
+    return textStore.filter(Boolean).join('\n');
+  };
+}();
+
+function applyToSingletonTag(style, index, remove, obj) {
+  var css = remove ? '' : obj.media ? "@media ".concat(obj.media, " {").concat(obj.css, "}") : obj.css; // For old IE
+
+  /* istanbul ignore if  */
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = replaceText(index, css);
+  } else {
+    var cssNode = document.createTextNode(css);
+    var childNodes = style.childNodes;
+
+    if (childNodes[index]) {
+      style.removeChild(childNodes[index]);
+    }
+
+    if (childNodes.length) {
+      style.insertBefore(cssNode, childNodes[index]);
+    } else {
+      style.appendChild(cssNode);
+    }
+  }
+}
+
+function applyToTag(style, options, obj) {
+  var css = obj.css;
+  var media = obj.media;
+  var sourceMap = obj.sourceMap;
+
+  if (media) {
+    style.setAttribute('media', media);
+  } else {
+    style.removeAttribute('media');
+  }
+
+  if (sourceMap && typeof btoa !== 'undefined') {
+    css += "\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))), " */");
+  } // For old IE
+
+  /* istanbul ignore if  */
+
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    while (style.firstChild) {
+      style.removeChild(style.firstChild);
+    }
+
+    style.appendChild(document.createTextNode(css));
+  }
+}
+
+var singleton = null;
+var singletonCounter = 0;
+
+function addStyle(obj, options) {
+  var style;
+  var update;
+  var remove;
+
+  if (options.singleton) {
+    var styleIndex = singletonCounter++;
+    style = singleton || (singleton = insertStyleElement(options));
+    update = applyToSingletonTag.bind(null, style, styleIndex, false);
+    remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+  } else {
+    style = insertStyleElement(options);
+    update = applyToTag.bind(null, style, options);
+
+    remove = function remove() {
+      removeStyleElement(style);
+    };
+  }
+
+  update(obj);
+  return function updateStyle(newObj) {
+    if (newObj) {
+      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap) {
+        return;
+      }
+
+      update(obj = newObj);
+    } else {
+      remove();
+    }
+  };
+}
+
+module.exports = function (list, options) {
+  options = options || {}; // Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+  // tags it will allow on a page
+
+  if (!options.singleton && typeof options.singleton !== 'boolean') {
+    options.singleton = isOldIE();
+  }
+
+  list = list || [];
+  var lastIdentifiers = modulesToDom(list, options);
+  return function update(newList) {
+    newList = newList || [];
+
+    if (Object.prototype.toString.call(newList) !== '[object Array]') {
+      return;
+    }
+
+    for (var i = 0; i < lastIdentifiers.length; i++) {
+      var identifier = lastIdentifiers[i];
+      var index = getIndexByIdentifier(identifier);
+      stylesInDom[index].references--;
+    }
+
+    var newLastIdentifiers = modulesToDom(newList, options);
+
+    for (var _i = 0; _i < lastIdentifiers.length; _i++) {
+      var _identifier = lastIdentifiers[_i];
+
+      var _index = getIndexByIdentifier(_identifier);
+
+      if (stylesInDom[_index].references === 0) {
+        stylesInDom[_index].updater();
+
+        stylesInDom.splice(_index, 1);
+      }
+    }
+
+    lastIdentifiers = newLastIdentifiers;
+  };
+};
 
 /***/ })
 
@@ -30280,7 +31155,7 @@ if (false) {} else {
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
+/******/ 			id: moduleId,
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
@@ -30293,6 +31168,18 @@ if (false) {} else {
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => module['default'] :
+/******/ 				() => module;
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports

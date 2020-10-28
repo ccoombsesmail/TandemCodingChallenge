@@ -13,3 +13,23 @@
  *= require_tree .
  *= require_self
  */
+
+ h1, h2, ul {
+   margin: 0;
+   padding: 0;
+ }
+
+body {
+  height: 100vh;
+  margin: 0;
+  z-index: -9999999;
+}
+#root {
+  z-index: -9999999;
+
+}
+
+ html {
+ height: 100%;
+  padding: 0;
+ }
