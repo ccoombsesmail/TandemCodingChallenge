@@ -20,3 +20,14 @@ export function shuffle(array) {
     [array[i], array[j]] = [array[j], array[i]];
   }
 }
+
+
+export function checkAnswers(answers, questions) {
+  let numCorrect = 0
+  for (let i = 0; i <questions.length; i++) {
+    if (questions[i].correct === answers[i][0]) {
+      numCorrect++
+    }
+  }
+  return numCorrect
+}

@@ -39,3 +39,7 @@ background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, F
 .answer:hover {
   background-color: thistle;
 }
+
+.selected {
+  background-color: thistle
+}

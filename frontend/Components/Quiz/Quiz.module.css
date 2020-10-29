@@ -1,16 +1,14 @@
 .quizWrapper{ 
  display: flex;
  flex-direction: column;
+ align-items: center;
  width: 542px;
  position: relative;
- margin-top: 100px;
-
-
+ margin-top: 90px;
+ z-index: 200;
 }
 
 .buttonsWrapper {
-  /* display: flex;
-  justify-content: space-between; */
   width: 100%;
   margin-top: 40px;
   position: relative;
@@ -22,19 +20,15 @@
   bottom: 0px;
   border-radius: 5px;
   background: #800080;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #ffc0cb, #800080);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #ffc0cb, #800080); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-color: white;
-padding: 5px;
-width: 100px;
-border: none;
-cursor: pointer;
-font-weight: bold;
-
-
-
-
-
+  background: -webkit-linear-gradient(to right, #ffc0cb, #800080);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ffc0cb, #800080); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+  padding: 5px;
+  width: 100px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 202;
 }
 
 .nextButton {
@@ -42,18 +36,43 @@ font-weight: bold;
   right: 0px;
   bottom: 0px;
   border-radius: 5px;
-background: #642B73;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #642B73;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+  padding: 5px;
+  width: 100px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 202;
+}
 
 
+.animateWrapper {
+  z-index: 100;
+}
 
-color: white;
-padding: 5px;
-width: 100px;
-border: none;
-cursor: pointer;
-font-weight: bold;
+.beginButton {
+  border-radius: 5px;
+  background: #642B73;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 202;
+  height: 60px;
+  width: 10vw;
+  font-size: 30px;
+  margin-top: 20px;
+  text-transform: uppercase;
+  font-family: cursive;
+}
 
 
+.welcome {
+  color: #50093f;
 }
