@@ -370,6 +370,16 @@ var Quiz = function Quiz() {
       currentAnswers = _useState14[0],
       setCurrentAnswers = _useState14[1];
 
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState16 = _slicedToArray(_useState15, 2),
+      showResults = _useState16[0],
+      setShowResults = _useState16[1];
+
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState18 = _slicedToArray(_useState17, 2),
+      numCorrect = _useState18[0],
+      setNumCorrect = _useState18[1];
+
   var buttonPress = function buttonPress(direction) {
     if (direction === 'prev') {
       return function () {
@@ -411,7 +421,9 @@ var Quiz = function Quiz() {
 
   var handleSubmit = function handleSubmit() {
     var numCorrect = (0,_util_question_gen_util__WEBPACK_IMPORTED_MODULE_4__.checkAnswers)(currentAnswers, questions);
-    console.log(numCorrect);
+    setQuestionNum(-1);
+    setNumCorrect(numCorrect);
+    setShowResults(true);
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -452,7 +464,21 @@ var Quiz = function Quiz() {
     onClick: function onClick() {
       return beginButton();
     }
-  }, " Begin "));
+  }, " Begin New Quiz "), showResults && questionNum === -1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Your Score:", numCorrect, " / 10"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+    className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_5___default().resultsWrapper)
+  }, questions.map(function (question, qNum) {
+    var liStyles = [(_Quiz_module_css__WEBPACK_IMPORTED_MODULE_5___default().resultsLi)];
+
+    if (question.correct === currentAnswers[qNum][0]) {
+      liStyles.push((_Quiz_module_css__WEBPACK_IMPORTED_MODULE_5___default().correct));
+    } else {
+      liStyles.push((_Quiz_module_css__WEBPACK_IMPORTED_MODULE_5___default().incorrect));
+    }
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+      className: liStyles.join(' ')
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Correct:"), question.correct), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Selected:"), currentAnswers[qNum][0]));
+  }))) : null);
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Quiz);
@@ -2155,13 +2181,17 @@ module.exports = exports;
   \********************************************************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: __webpack_exports__, module, __webpack_require__, module.id */
+/*! CommonJS bailout: exports is used directly at 3:0-7 */
+/*! CommonJS bailout: exports.push(...) prevents optimization as exports is passed as call context at 5:0-12 */
+/*! CommonJS bailout: exports is used directly at 20:17-24 */
+/*! CommonJS bailout: module.exports is used directly at 20:0-14 */
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".Quiz-module__quizWrapper--1ekNE{ \n display: flex;\n flex-direction: column;\n align-items: center;\n width: 542px;\n position: relative;\n margin-top: 90px;\n z-index: 200;\n}\n\n.Quiz-module__buttonsWrapper--2TSJ7 {\n  width: 100%;\n  margin-top: 40px;\n  position: relative;\n}\n\n.Quiz-module__prevButton--EFVAY {\n  position: absolute;\n  left: 0px;\n  bottom: 0px;\n  border-radius: 5px;\n  background: #800080;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #ffc0cb, #800080);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #ffc0cb, #800080); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  width: 100px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n}\n\n.Quiz-module__nextButton--30OK0 {\n  position: absolute;\n  right: 0px;\n  bottom: 0px;\n  border-radius: 5px;\n  background: #642B73;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  width: 100px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n}\n\n\n.Quiz-module__animateWrapper--3j3Nj {\n  z-index: 100;\n}\n\n.Quiz-module__beginButton--o2RTW {\n  border-radius: 5px;\n  background: #642B73;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n  height: 60px;\n  width: 10vw;\n  font-size: 30px;\n  margin-top: 20px;\n  text-transform: uppercase;\n  font-family: cursive;\n}\n\n\n.Quiz-module__welcome--2Wq4I {\n  color: #50093f;\n}", ""]);
+exports.push([module.id, ".Quiz-module__quizWrapper--1ekNE{ \n display: flex;\n flex-direction: column;\n align-items: center;\n width: 542px;\n position: relative;\n margin-top: 90px;\n z-index: 200;\n}\n\n.Quiz-module__buttonsWrapper--2TSJ7 {\n  width: 100%;\n  margin-top: 40px;\n  position: relative;\n}\n\n.Quiz-module__prevButton--EFVAY {\n  position: absolute;\n  left: 0px;\n  bottom: 0px;\n  border-radius: 5px;\n  background: #800080;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #ffc0cb, #800080);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #ffc0cb, #800080); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  width: 100px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n}\n\n.Quiz-module__nextButton--30OK0 {\n  position: absolute;\n  right: 0px;\n  bottom: 0px;\n  border-radius: 5px;\n  background: #642B73;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  width: 100px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n}\n\n\n.Quiz-module__animateWrapper--3j3Nj {\n  z-index: 100;\n}\n\n.Quiz-module__beginButton--o2RTW {\n  border-radius: 5px;\n  background: #642B73;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n  height: 60px;\n  width: 25vw;\n  font-size: 1.5vw;\n  margin-top: 20px;\n  text-transform: uppercase;\n  font-family: cursive;\n}\n\n\n.Quiz-module__welcome--2Wq4I {\n  color: #50093f;\n}\n\n.Quiz-module__resultsLi--20kkt {\n  list-style: none;\n  width: 500px;\n  display: flex;\n  justify-content: space-between;\n  font-size: 20px;\n  padding: 5px;\n\n\n}\n\n.Quiz-module__correct--2cajk {\n  background-color: green;\n}\n\n.Quiz-module__incorrect--21oKJ {\n  background-color: red;\n}\n\n.Quiz-module__resultsLi--20kkt > span > b {\n  margin-right: 5px;\n}\n\n\n.Quiz-module__resultsWrapper--3Lv_L {\n  border-radius: 5px;\n}", ""]);
 // Exports
 exports.locals = {
 	"quizWrapper": "Quiz-module__quizWrapper--1ekNE",
@@ -2170,7 +2200,11 @@ exports.locals = {
 	"nextButton": "Quiz-module__nextButton--30OK0",
 	"animateWrapper": "Quiz-module__animateWrapper--3j3Nj",
 	"beginButton": "Quiz-module__beginButton--o2RTW",
-	"welcome": "Quiz-module__welcome--2Wq4I"
+	"welcome": "Quiz-module__welcome--2Wq4I",
+	"resultsLi": "Quiz-module__resultsLi--20kkt",
+	"correct": "Quiz-module__correct--2cajk",
+	"incorrect": "Quiz-module__incorrect--21oKJ",
+	"resultsWrapper": "Quiz-module__resultsWrapper--3Lv_L"
 };
 module.exports = exports;
 

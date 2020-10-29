@@ -65,8 +65,8 @@
   font-weight: bold;
   z-index: 202;
   height: 60px;
-  width: 10vw;
-  font-size: 30px;
+  width: 25vw;
+  font-size: 1.5vw;
   margin-top: 20px;
   text-transform: uppercase;
   font-family: cursive;
@@ -75,4 +75,32 @@
 
 .welcome {
   color: #50093f;
+}
+
+.resultsLi {
+  list-style: none;
+  width: 500px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  padding: 5px;
+
+
+}
+
+.correct {
+  background-color: green;
+}
+
+.incorrect {
+  background-color: red;
+}
+
+.resultsLi > span > b {
+  margin-right: 5px;
+}
+
+
+.resultsWrapper {
+  border-radius: 5px;
 }

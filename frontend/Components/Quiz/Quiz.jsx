@@ -14,6 +14,8 @@ const Quiz = () => {
   const [animateIn, setAnimateIn] = useState('bounceInLeft')
   const [showWelcome, setShowWelcome] = useState(true)
   const [currentAnswers, setCurrentAnswers] = useState(new Array(10).fill(null))
+  const [showResults, setShowResults] = useState(false)
+  const [numCorrect, setNumCorrect] = useState(0)
 
   const buttonPress = (direction) => {
     if (direction === 'prev') {
@@ -55,7 +57,9 @@ const Quiz = () => {
 
   const handleSubmit = () => {
     const numCorrect = checkAnswers(currentAnswers, questions)
-    console.log(numCorrect)
+    setQuestionNum(-1)
+    setNumCorrect(numCorrect)
+    setShowResults(true)
   }
 
   return (
@@ -96,8 +100,42 @@ const Quiz = () => {
               }
             </div>
           </>
-        ) : <button className={styles.beginButton} type="button" onClick={() => beginButton()}> Begin </button>
+        ) : <button className={styles.beginButton} type="button" onClick={() => beginButton()}> Begin New Quiz </button>
     }
+      {
+          showResults && questionNum === -1 ? (
+            <div>
+              <h1>
+                Your Score:
+                {numCorrect} / 10 
+              </h1>
+              <ul className={styles.resultsWrapper}>
+                {
+                  questions.map((question, qNum) => {
+                    const liStyles = [styles.resultsLi]
+                    if (question.correct === currentAnswers[qNum][0]) {
+                      liStyles.push(styles.correct)
+                    } else {
+                      liStyles.push(styles.incorrect)
+                    }
+                    return (
+                      <li className={liStyles.join(' ')}>
+                        <span>
+                          <b>Correct:</b>
+                          {question.correct}
+                        </span>
+                        <span>
+                          <b>Selected:</b>
+                          {currentAnswers[qNum][0]}
+                        </span>
+                      </li>
+                    )
+                  })
+                }
+              </ul>
+            </div>
+          ) : null
+      }
     </div>
   )
 }
