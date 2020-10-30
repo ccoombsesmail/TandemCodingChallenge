@@ -16,11 +16,13 @@ class App extends React.Component {
       showLogin: false,
       formType: 'Login',
       currentUser: undefined,
+      score: null
 
     }
     this.toggleForm = this.toggleForm.bind(this)
     this.logout = this.logout.bind(this)
     this.login = this.login.bind(this)
+    this.receiveScore = this.receiveScore.bind(this)
   }
 
   componentDidMount() {
@@ -44,14 +46,17 @@ class App extends React.Component {
   }
 
   login(currentUser) {
-    console.log(currentUser)
     this.setState({
       currentUser,
     })
   }
 
+  receiveScore(score) {
+    this.setState({ score })
+  }
+
   render() {
-    const { showLogin, formType, currentUser } = this.state
+    const { showLogin, formType, currentUser, score } = this.state
     return (
       <div className={styles.appWrapper}>
         <header>
@@ -92,10 +97,12 @@ class App extends React.Component {
         }
         <div className={styles.scoresQuizChatWrapper}>
           <Animated animationIn="slideInLeft">
-            <LeaderBoard />
+            <LeaderBoard score={score} />
           </Animated>
-          <Quiz currentUser={currentUser} />
-          <Chat currentUser={currentUser} /> 
+          <Quiz currentUser={currentUser} receiveScore={this.receiveScore} />
+          <Animated animationIn="slideInRight">
+            <Chat currentUser={currentUser} />
+          </Animated>
         </div>
         <div className={styles.brains}>
           <img alt="" src="https://i.ibb.co/w7ZcC9s/mental-health.png" height="75px" width="75px" />

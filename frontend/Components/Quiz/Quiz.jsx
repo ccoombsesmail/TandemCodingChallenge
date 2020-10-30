@@ -6,7 +6,7 @@ import { getRandomQuestions, checkAnswers } from '../../util/question_gen_util'
 import { createScore } from '../../util/scores_api_util'
 import styles from './Quiz.module.css'
 
-const Quiz = ({ currentUser }) => {
+const Quiz = ({ currentUser, receiveScore }) => {
 
   const [questionNum, setQuestionNum] = useState(-1)
   const [questions, setQuestions] = useState(getRandomQuestions())
@@ -55,7 +55,6 @@ const Quiz = ({ currentUser }) => {
   const setAnswer = (selectedAnswer, answerNum) => {
     currentAnswers[questionNum] = [selectedAnswer, answerNum]
     setCurrentAnswers([...currentAnswers])
-    console.log([...currentAnswers])
   }
 
   const handleSubmit = () => {
@@ -67,12 +66,12 @@ const Quiz = ({ currentUser }) => {
       createScore({
         username: currentUser.username,
         score: numCorrect,
-      }).then((res) => console.log(res))
+      }).then((res) => receiveScore(res.score))
     } else {
       createScore({
         username: 'Anonymous',
         score: numCorrect,
-      }).then((res) => console.log(res))
+      }).then((res) => receiveScore(res.score))
     }
   }
 
@@ -107,14 +106,18 @@ const Quiz = ({ currentUser }) => {
               }
               {
                 questionNum === questions.length - 1 ? (
-                  <button className={styles.nextButton} type="button" onClick={handleSubmit} >
+                  <button className={styles.nextButton} type="button" onClick={handleSubmit}>
                     Submit
                   </button>
                 ) : null
               }
             </div>
           </>
-        ) : <button className={styles.beginButton} type="button" onClick={() => beginButton()}> Begin New Quiz </button>
+        ) : (
+          <Animated animationIn="fadeIn" animationOut="fadeOut">
+            <button className={styles.beginButton} type="button" onClick={() => beginButton()}> Begin New Quiz </button>
+          </Animated>
+        )
     }
       {
           showResults && questionNum === -1 ? (

@@ -10,6 +10,12 @@
   -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
   box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
   z-index: 202;
+  overflow-y: scroll;
+  
+}
+.leaderBoardWrapper > h1 {
+  text-align: center;
+  border-bottom: 1px solid black;
 }
 
 .leaderBoardWrapper > ul > li {
@@ -28,3 +34,11 @@
 }
 
 
+.leaderBoardWrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.leaderBoardWrapper {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

@@ -73,11 +73,13 @@ var App = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       showLogin: false,
       formType: 'Login',
-      currentUser: undefined
+      currentUser: undefined,
+      score: null
     };
     _this.toggleForm = _this.toggleForm.bind(_assertThisInitialized(_this));
     _this.logout = _this.logout.bind(_assertThisInitialized(_this));
     _this.login = _this.login.bind(_assertThisInitialized(_this));
+    _this.receiveScore = _this.receiveScore.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -111,9 +113,15 @@ var App = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "login",
     value: function login(currentUser) {
-      console.log(currentUser);
       this.setState({
         currentUser: currentUser
+      });
+    }
+  }, {
+    key: "receiveScore",
+    value: function receiveScore(score) {
+      this.setState({
+        score: score
       });
     }
   }, {
@@ -124,7 +132,8 @@ var App = /*#__PURE__*/function (_React$Component) {
       var _this$state = this.state,
           showLogin = _this$state.showLogin,
           formType = _this$state.formType,
-          currentUser = _this$state.currentUser;
+          currentUser = _this$state.currentUser,
+          score = _this$state.score;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: (_App_module_css__WEBPACK_IMPORTED_MODULE_4___default().appWrapper)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("header", null, currentUser !== undefined ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Hello", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, currentUser.username)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -167,11 +176,16 @@ var App = /*#__PURE__*/function (_React$Component) {
         className: (_App_module_css__WEBPACK_IMPORTED_MODULE_4___default().scoresQuizChatWrapper)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_animated_css__WEBPACK_IMPORTED_MODULE_3__.Animated, {
         animationIn: "slideInLeft"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Components_LeaderBoard_LeaderBoard__WEBPACK_IMPORTED_MODULE_7__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Components_Quiz_Quiz__WEBPACK_IMPORTED_MODULE_1__.default, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Components_LeaderBoard_LeaderBoard__WEBPACK_IMPORTED_MODULE_7__.default, {
+        score: score
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Components_Quiz_Quiz__WEBPACK_IMPORTED_MODULE_1__.default, {
+        currentUser: currentUser,
+        receiveScore: this.receiveScore
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_animated_css__WEBPACK_IMPORTED_MODULE_3__.Animated, {
+        animationIn: "slideInRight"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Components_Chat_Chat__WEBPACK_IMPORTED_MODULE_8__.default, {
         currentUser: currentUser
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Components_Chat_Chat__WEBPACK_IMPORTED_MODULE_8__.default, {
-        currentUser: currentUser
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: (_App_module_css__WEBPACK_IMPORTED_MODULE_4___default().brains)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         alt: "",
@@ -495,7 +509,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var LeaderBoard = function LeaderBoard() {
+var LeaderBoard = function LeaderBoard(_ref) {
+  var score = _ref.score;
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       topScores = _useState2[0],
@@ -505,10 +521,10 @@ var LeaderBoard = function LeaderBoard() {
     (0,_util_scores_api_util__WEBPACK_IMPORTED_MODULE_2__.getScores)().then(function (res) {
       setTopScores(res.scores);
     });
-  }, []);
+  }, [score]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: (_LeaderBoard_module_css__WEBPACK_IMPORTED_MODULE_1___default().leaderBoardWrapper)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, topScores.map(function (score, idx) {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Leader Board"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, topScores.map(function (score, idx) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
       key: score.id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "".concat(idx + 1, ". ").concat(score.username)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, score.score));
@@ -649,7 +665,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Quiz = function Quiz(_ref) {
-  var currentUser = _ref.currentUser;
+  var currentUser = _ref.currentUser,
+      receiveScore = _ref.receiveScore;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1),
       _useState2 = _slicedToArray(_useState, 2),
@@ -734,7 +751,6 @@ var Quiz = function Quiz(_ref) {
   var setAnswer = function setAnswer(selectedAnswer, answerNum) {
     currentAnswers[questionNum] = [selectedAnswer, answerNum];
     setCurrentAnswers(_toConsumableArray(currentAnswers));
-    console.log(_toConsumableArray(currentAnswers));
   };
 
   var handleSubmit = function handleSubmit() {
@@ -748,14 +764,14 @@ var Quiz = function Quiz(_ref) {
         username: currentUser.username,
         score: numCorrect
       }).then(function (res) {
-        return console.log(res);
+        return receiveScore(res.score);
       });
     } else {
       (0,_util_scores_api_util__WEBPACK_IMPORTED_MODULE_5__.createScore)({
         username: 'Anonymous',
         score: numCorrect
       }).then(function (res) {
-        return console.log(res);
+        return receiveScore(res.score);
       });
     }
   };
@@ -792,13 +808,16 @@ var Quiz = function Quiz(_ref) {
     className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_6___default().nextButton),
     type: "button",
     onClick: handleSubmit
-  }, "Submit") : null)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  }, "Submit") : null)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_animated_css__WEBPACK_IMPORTED_MODULE_2__.Animated, {
+    animationIn: "fadeIn",
+    animationOut: "fadeOut"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_6___default().beginButton),
     type: "button",
     onClick: function onClick() {
       return beginButton();
     }
-  }, " Begin New Quiz "), showResults && questionNum === -1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, " Begin New Quiz ")), showResults && questionNum === -1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_6___default().resultsOuterWrapper)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Your Score:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, numCorrect, " / 10")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
     className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_6___default().resultsWrapper)
@@ -1254,7 +1273,6 @@ var deleteSession = function deleteSession() {
   \*********************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__, module.id */
-/*! CommonJS bailout: module.exports is used directly at 15:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var api = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
@@ -1281,7 +1299,6 @@ module.exports = content.locals || {};
   \**************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__, module.id */
-/*! CommonJS bailout: module.exports is used directly at 15:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var api = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
@@ -1308,7 +1325,6 @@ module.exports = content.locals || {};
   \*********************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__, module.id */
-/*! CommonJS bailout: module.exports is used directly at 15:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var api = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
@@ -1335,7 +1351,6 @@ module.exports = content.locals || {};
   \****************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__, module.id */
-/*! CommonJS bailout: module.exports is used directly at 15:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var api = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
@@ -1362,7 +1377,6 @@ module.exports = content.locals || {};
   \***************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__, module.id */
-/*! CommonJS bailout: module.exports is used directly at 15:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var api = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
@@ -1389,7 +1403,6 @@ module.exports = content.locals || {};
   \**************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__, module.id */
-/*! CommonJS bailout: module.exports is used directly at 15:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var api = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
@@ -1416,7 +1429,6 @@ module.exports = content.locals || {};
   \****************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__, module.id */
-/*! CommonJS bailout: module.exports is used directly at 15:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var api = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
@@ -1492,8 +1504,6 @@ exports.isJsDom = isJsDom;
   \******************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_exports__ */
-/*! CommonJS bailout: module.exports is used directly at 41:38-52 */
-/*! CommonJS bailout: module.exports is used directly at 43:2-16 */
 /***/ ((module, exports) => {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -1557,7 +1567,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
   \****************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 1002:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -2571,10 +2580,6 @@ module.exports = factory;
   \****************************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: __webpack_exports__, module, __webpack_require__, module.id */
-/*! CommonJS bailout: exports is used directly at 3:0-7 */
-/*! CommonJS bailout: exports.push(...) prevents optimization as exports is passed as call context at 5:0-12 */
-/*! CommonJS bailout: exports is used directly at 7:17-24 */
-/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports
@@ -2604,7 +2609,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, "\nheader {\n  position: absolute;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  top: 0px;\n  height: 60px;\n  width: 100vw;\n  background-color: black;\n  z-index: 99999999999;\n  -moz-box-shadow:0 5px 5px rgba(182, 182, 182, 0.75);\n  -webkit-box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);\n  box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);\n}\n\nheader > h1 {\n  color: white;\n  margin-left: 20px\n}\nheader > h1 > b {\n  color: turquoise;\n  margin-right: 10px;\n  margin-left: 5px\n}\n\n.App-module__left--rAweV {\n  display: flex;\n  color: white;\n  margin-left: 20px;\n}\n\n.App-module__left--rAweV > h1 {\n  margin-left: 7px;\n}\n\n.App-module__login--3J-a2 {\n\n  border-radius: 5px;\n  background: #642B73;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  width: 100px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n  margin-right: 20px;\n\n\n}\n\n.App-module__appWrapper--3ot_W {\n  width: 100%;\n  height: 100vh;\n  display: flex;\n  align-items: center;\n  flex-direction: column;\n  background: #11998e;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  position: absolute;\n  box-sizing: border-box;\n  overflow: hidden;\n  z-index: 100;\n\n}\n\n\n.App-module__scoresQuizChatWrapper--188lX {\n  display: flex;\n  justify-content: space-between;\n  width: 100vw;\n  z-index: 202;\n}\n\n.App-module__scoresQuizChatWrapper--188lX  > section {\n  width: 300px;\n  height: 70vh;\n  margin-right: 20px;\n  background-color: cadetblue;\n\n}\n\n\n\n\n.App-module__brains--qPppA {\n  height: 100%;\n  width: 100%;\n\n}\n\n.App-module__brains--qPppA img{\nposition:absolute ;\ndisplay:block ;\nz-index: 99;\n}\n\n.App-module__brains--qPppA img:nth-child(1){\n    left:-10%;\n    bottom: 0%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:-3s;\n\n}\n.App-module__brains--qPppA img:nth-child(2){\n    left:0%;\n    bottom: 0%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:-2s;\n\n}\n.App-module__brains--qPppA img:nth-child(3){\n    left:10%;\n    bottom: -10%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:3.5s;\n\n}\n.App-module__brains--qPppA img:nth-child(4){\n    left:20%;\n    bottom: -20%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:0s;\n\n}\n\n.App-module__brains--qPppA img:nth-child(5){\n    left:30%;\n    bottom: -15%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:1s;\n\n}\n\n.App-module__brains--qPppA img:nth-child(6){\n    left:40%;\n    bottom: 0%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:-.4s;\n\n}\n\n.App-module__brains--qPppA img:nth-child(7){\n    left:50%;\n    bottom: -30%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:1.2s;\n}\n\n\n.App-module__brains--qPppA img:nth-child(8){\n    left:60%;\n    bottom: -25%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:-2.4s;\n    transform: rotate(35deg);\n\n}  \n\n@keyframes App-module__fall--7MXEB{\n    0%{\n      transform: translateY(0) translateX(0) rotate(0deg);\n\n    }\n    100%{\n        \n         transform: translateY(-1200px) translateX(750px) rotate(720deg);\n\n      }\n    }", ""]);
+exports.push([module.id, "\nheader {\n  position: absolute;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  top: 0px;\n  height: 60px;\n  width: 100vw;\n  background-color: black;\n  z-index: 99999999999;\n  -moz-box-shadow:0 5px 5px rgba(182, 182, 182, 0.75);\n  -webkit-box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);\n  box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);\n}\n\nheader > h1 {\n  color: white;\n  margin-left: 20px\n}\nheader > h1 > b {\n  color: turquoise;\n  margin-right: 10px;\n  margin-left: 5px\n}\n\n.App-module__left--rAweV {\n  display: flex;\n  color: white;\n  margin-left: 20px;\n}\n\n.App-module__left--rAweV > h1 {\n  margin-left: 7px;\n  /* text-shadow: 0 0 10px #fff, 0 0 20px #ff4da6, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6; */\n\n}\n\n.App-module__login--3J-a2 {\n\n  border-radius: 5px;\n  background: #642B73;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  width: 100px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n  margin-right: 20px;\n\n\n}\n\n.App-module__appWrapper--3ot_W {\n  width: 100%;\n  height: 100vh;\n  display: flex;\n  align-items: center;\n  flex-direction: column;\n  background: #11998e;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  position: absolute;\n  box-sizing: border-box;\n  overflow: hidden;\n  z-index: 100;\n\n}\n\n\n.App-module__scoresQuizChatWrapper--188lX {\n  display: flex;\n  justify-content: space-between;\n  width: 100vw;\n  z-index: 202;\n}\n\n\n\n\n\n.App-module__brains--qPppA {\n  height: 100%;\n  width: 100%;\n\n}\n\n.App-module__brains--qPppA img{\nposition:absolute ;\ndisplay:block ;\nz-index: 99;\n}\n\n.App-module__brains--qPppA img:nth-child(1){\n    left:-10%;\n    bottom: 0%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:-3s;\n\n}\n.App-module__brains--qPppA img:nth-child(2){\n    left:0%;\n    bottom: 0%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:-2s;\n\n}\n.App-module__brains--qPppA img:nth-child(3){\n    left:10%;\n    bottom: -10%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:3.5s;\n\n}\n.App-module__brains--qPppA img:nth-child(4){\n    left:20%;\n    bottom: -20%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:0s;\n\n}\n\n.App-module__brains--qPppA img:nth-child(5){\n    left:30%;\n    bottom: -15%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:1s;\n\n}\n\n.App-module__brains--qPppA img:nth-child(6){\n    left:40%;\n    bottom: 0%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:-.4s;\n\n}\n\n.App-module__brains--qPppA img:nth-child(7){\n    left:50%;\n    bottom: -30%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:1.2s;\n}\n\n\n.App-module__brains--qPppA img:nth-child(8){\n    left:60%;\n    bottom: -25%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:-2.4s;\n    transform: rotate(35deg);\n\n}  \n\n@keyframes App-module__fall--7MXEB{\n    0%{\n      transform: translateY(0) translateX(0) rotate(0deg);\n\n    }\n    100%{\n        \n         transform: translateY(-1200px) translateX(750px) rotate(720deg);\n\n      }\n    }", ""]);
 // Exports
 exports.locals = {
 	"left": "App-module__left--rAweV",
@@ -2625,17 +2630,13 @@ module.exports = exports;
   \********************************************************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: __webpack_exports__, module, __webpack_require__, module.id */
-/*! CommonJS bailout: exports is used directly at 3:0-7 */
-/*! CommonJS bailout: exports.push(...) prevents optimization as exports is passed as call context at 5:0-12 */
-/*! CommonJS bailout: exports is used directly at 13:17-24 */
-/*! CommonJS bailout: module.exports is used directly at 13:0-14 */
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".Chat-module__chatWrapper--266U4 {\n  width: 300px;\n  height: 70vh;\n  background-color: white;\n  border: 2px solid black;\n  border-radius: 7px;\n  margin-top: 100px;\n  margin-right: 40px;\n    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  z-index: 202;\n  position: relative;\n}\n\n\n\n.Chat-module__messageList--3Hjvc{\n    overflow-y: scroll;\n    height: 83%;\n    width: 100%;\n    /* width: 300px; */\n    background-color: white;\n    /* color: #EFEFF1; */\n    font-weight: 700;\n    border-bottom: none;\n    \n}\n\n.Chat-module__messageLi--21rRS {\n    list-style: none;\n    margin: 10px;\n}\n\n.Chat-module__username--2eFlk {\n    color:#A86DFF;\n}\n\n\n.Chat-module__messageList--3Hjvc::-webkit-scrollbar {\n  display: none;\n}\n\n.Chat-module__messageList--3Hjvc {\n  -ms-overflow-style: none;  /* IE and Edge */\n  scrollbar-width: none;  /* Firefox */\n}", ""]);
+exports.push([module.id, ".Chat-module__chatWrapper--266U4 {\n  width: 300px;\n  height: 70vh;\n  background-color: white;\n  border: 2px solid black;\n  border-radius: 7px;\n  margin-top: 100px;\n  margin-right: 40px;\n  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  z-index: 202;\n  position: relative;\n}\n\n\n\n.Chat-module__messageList--3Hjvc{\n    overflow-y: scroll;\n    height: 83%;\n    width: 100%;\n    /* width: 300px; */\n    background-color: white;\n    font-weight: 700;\n    border-bottom: none;\n   \n    \n}\n\n.Chat-module__messageLi--21rRS {\n    list-style: none;\n    margin-left: 10px;\n    margin-top: 10px;\n    font-size: 20px;\n}\n\n.Chat-module__username--2eFlk {\n    color:#A86DFF;\n}\n\n\n.Chat-module__messageList--3Hjvc::-webkit-scrollbar {\n  display: none;\n}\n\n.Chat-module__messageList--3Hjvc {\n  -ms-overflow-style: none;  /* IE and Edge */\n  scrollbar-width: none;  /* Firefox */\n}", ""]);
 // Exports
 exports.locals = {
 	"chatWrapper": "Chat-module__chatWrapper--266U4",
@@ -2654,10 +2655,6 @@ module.exports = exports;
   \***************************************************************************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: __webpack_exports__, module, __webpack_require__, module.id */
-/*! CommonJS bailout: exports is used directly at 3:0-7 */
-/*! CommonJS bailout: exports.push(...) prevents optimization as exports is passed as call context at 5:0-12 */
-/*! CommonJS bailout: exports is used directly at 13:17-24 */
-/*! CommonJS bailout: module.exports is used directly at 13:0-14 */
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports
@@ -2683,17 +2680,13 @@ module.exports = exports;
   \**********************************************************************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: __webpack_exports__, module, __webpack_require__, module.id */
-/*! CommonJS bailout: exports is used directly at 3:0-7 */
-/*! CommonJS bailout: exports.push(...) prevents optimization as exports is passed as call context at 5:0-12 */
-/*! CommonJS bailout: exports is used directly at 10:17-24 */
-/*! CommonJS bailout: module.exports is used directly at 10:0-14 */
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".LeaderBoard-module__leaderBoardWrapper--2kfuA {\n  width: 300px;\n  height: 70vh;\n  background-color: white;\n  border: 2px solid black;\n  border-radius: 7px;\n  margin-top: 100px;\n  margin-left: 40px;\n    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  z-index: 202;\n}\n\n.LeaderBoard-module__leaderBoardWrapper--2kfuA > ul > li {\n  padding: 10px;\n  background-color: thistle;\n  border-bottom: 1px solid black;\n  background-color: #FE99D0;\n  display: flex;\n  justify-content: space-between;\n\n}\n\n.LeaderBoard-module__leaderBoardWrapper--2kfuA > ul {\n  background-color: #FE99D0;\n\n}\n\n\n", ""]);
+exports.push([module.id, ".LeaderBoard-module__leaderBoardWrapper--2kfuA {\n  width: 300px;\n  height: 70vh;\n  background-color: white;\n  border: 2px solid black;\n  border-radius: 7px;\n  margin-top: 100px;\n  margin-left: 40px;\n    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  z-index: 202;\n  overflow-y: scroll;\n  \n}\n.LeaderBoard-module__leaderBoardWrapper--2kfuA > h1 {\n  text-align: center;\n  border-bottom: 1px solid black;\n}\n\n.LeaderBoard-module__leaderBoardWrapper--2kfuA > ul > li {\n  padding: 10px;\n  background-color: thistle;\n  border-bottom: 1px solid black;\n  background-color: #FE99D0;\n  display: flex;\n  justify-content: space-between;\n\n}\n\n.LeaderBoard-module__leaderBoardWrapper--2kfuA > ul {\n  background-color: #FE99D0;\n\n}\n\n\n.LeaderBoard-module__leaderBoardWrapper--2kfuA::-webkit-scrollbar {\n  display: none;\n}\n\n.LeaderBoard-module__leaderBoardWrapper--2kfuA {\n  -ms-overflow-style: none;  /* IE and Edge */\n  scrollbar-width: none;  /* Firefox */\n}\n", ""]);
 // Exports
 exports.locals = {
 	"leaderBoardWrapper": "LeaderBoard-module__leaderBoardWrapper--2kfuA"
@@ -2709,10 +2702,6 @@ module.exports = exports;
   \*********************************************************************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: __webpack_exports__, module, __webpack_require__, module.id */
-/*! CommonJS bailout: exports is used directly at 3:0-7 */
-/*! CommonJS bailout: exports.push(...) prevents optimization as exports is passed as call context at 5:0-12 */
-/*! CommonJS bailout: exports is used directly at 12:17-24 */
-/*! CommonJS bailout: module.exports is used directly at 12:0-14 */
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports
@@ -2737,17 +2726,13 @@ module.exports = exports;
   \********************************************************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: __webpack_exports__, module, __webpack_require__, module.id */
-/*! CommonJS bailout: exports is used directly at 3:0-7 */
-/*! CommonJS bailout: exports.push(...) prevents optimization as exports is passed as call context at 5:0-12 */
-/*! CommonJS bailout: exports is used directly at 21:17-24 */
-/*! CommonJS bailout: module.exports is used directly at 21:0-14 */
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".Quiz-module__quizWrapper--1ekNE{ \n display: flex;\n flex-direction: column;\n align-items: center;\n width: 542px;\n position: relative;\n margin-top: 90px;\n z-index: 200;\n}\n\n.Quiz-module__buttonsWrapper--2TSJ7 {\n  width: 100%;\n  margin-top: 40px;\n  position: relative;\n}\n\n.Quiz-module__prevButton--EFVAY {\n  position: absolute;\n  left: 0px;\n  bottom: 0px;\n  border-radius: 5px;\n  background: #642B73;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  width: 100px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n}\n\n.Quiz-module__nextButton--30OK0 {\n  position: absolute;\n  right: 0px;\n  bottom: 0px;\n  border-radius: 5px;\n  background: #642B73;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  width: 100px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n}\n\n\n.Quiz-module__animateWrapper--3j3Nj {\n  z-index: 100;\n}\n\n.Quiz-module__beginButton--o2RTW {\n  border-radius: 5px;\n  background: #642B73;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n  height: 60px;\n  width: 25vw;\n  font-size: 1.5vw;\n  margin-top: 20px;\n  text-transform: uppercase;\n  /* font-family: cursive; */\n}\n\n\n.Quiz-module__welcome--2Wq4I {\n  color: #50093f;\n}\n\n.Quiz-module__resultsLi--20kkt {\n  list-style: none;\n  width: 500px;\n  display: flex;\n  justify-content: space-between;\n  font-size: 20px;\n  padding: 8px;\n  border-radius: 5px;\n  border: 1px solid black;\n\n\n}\n\n.Quiz-module__correct--2cajk {\n  background-color: rgb(4,254,0);\n}\n\n.Quiz-module__incorrect--21oKJ {\n  background-color: red;\n}\n\n.Quiz-module__resultsLi--20kkt > span > b {\n  margin-right: 5px;\n}\n\n\n.Quiz-module__resultsWrapper--3Lv_L {\n  border-radius: 5px;\n   -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n}\n\n.Quiz-module__resultsOuterWrapper--qIviW {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n.Quiz-module__resultsOuterWrapper--qIviW > h1 {\n  margin-top: 50px;\n  margin-bottom: 50px;\n\n}\n\n.Quiz-module__resultsOuterWrapper--qIviW > h1 > b {\n  margin-left: 7px;\n}", ""]);
+exports.push([module.id, ".Quiz-module__quizWrapper--1ekNE{ \n display: flex;\n flex-direction: column;\n align-items: center;\n width: 542px;\n position: relative;\n margin-top: 90px;\n z-index: 200;\n}\n\n.Quiz-module__buttonsWrapper--2TSJ7 {\n  width: 100%;\n  margin-top: 40px;\n  position: relative;\n}\n\n.Quiz-module__prevButton--EFVAY {\n  position: absolute;\n  left: 0px;\n  bottom: 0px;\n  border-radius: 5px;\n  background: #642B73;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  width: 100px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n}\n\n.Quiz-module__nextButton--30OK0 {\n  position: absolute;\n  right: 0px;\n  bottom: 0px;\n  border-radius: 5px;\n  background: #642B73;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  width: 100px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n}\n\n\n.Quiz-module__animateWrapper--3j3Nj {\n  z-index: 100;\n}\n\n.Quiz-module__beginButton--o2RTW {\n  border-radius: 5px;\n  background: #642B73;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n  height: 60px;\n  width: 25vw;\n  font-size: 1.5vw;\n  margin-top: 20px;\n  text-transform: uppercase;\n      text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;\n\n  /* font-family: cursive; */\n}\n\n\n.Quiz-module__welcome--2Wq4I {\n  color: white;\n\n  /* text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6; */\n\n}\n\n.Quiz-module__resultsLi--20kkt {\n  list-style: none;\n  width: 500px;\n  display: flex;\n  justify-content: space-between;\n  font-size: 20px;\n  padding: 8px;\n  border-radius: 5px;\n  border: 1px solid black;\n\n\n}\n\n.Quiz-module__correct--2cajk {\n  background-color: rgb(4,254,0);\n}\n\n.Quiz-module__incorrect--21oKJ {\n  background-color: red;\n}\n\n.Quiz-module__resultsLi--20kkt > span > b {\n  margin-right: 5px;\n}\n\n\n.Quiz-module__resultsWrapper--3Lv_L {\n  border-radius: 5px;\n   -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n}\n\n.Quiz-module__resultsOuterWrapper--qIviW {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n.Quiz-module__resultsOuterWrapper--qIviW > h1 {\n  margin-top: 50px;\n  margin-bottom: 50px;\n\n}\n\n.Quiz-module__resultsOuterWrapper--qIviW > h1 > b {\n  margin-left: 7px;\n}", ""]);
 // Exports
 exports.locals = {
 	"quizWrapper": "Quiz-module__quizWrapper--1ekNE",
@@ -2774,10 +2759,6 @@ module.exports = exports;
   \**********************************************************************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: __webpack_exports__, module, __webpack_require__, module.id */
-/*! CommonJS bailout: exports is used directly at 3:0-7 */
-/*! CommonJS bailout: exports.push(...) prevents optimization as exports is passed as call context at 5:0-12 */
-/*! CommonJS bailout: exports is used directly at 13:17-24 */
-/*! CommonJS bailout: module.exports is used directly at 13:0-14 */
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports
@@ -2803,7 +2784,6 @@ module.exports = exports;
   \*****************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 9:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -2910,7 +2890,6 @@ function toComment(sourceMap) {
   \************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 36:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -2959,7 +2938,6 @@ module.exports = emptyFunction;
   \**********************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 17:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -2989,7 +2967,6 @@ module.exports = emptyObject;
   \********************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 53:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -3055,7 +3032,6 @@ module.exports = invariant;
   \******************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 62:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -3130,7 +3106,6 @@ module.exports = warning;
   \****************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 6:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var root = __webpack_require__(/*! ./_root */ "./node_modules/lodash/_root.js");
@@ -3149,7 +3124,6 @@ module.exports = Symbol;
   \******************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 21:0-14 */
 /***/ ((module) => {
 
 /**
@@ -3183,7 +3157,6 @@ module.exports = arrayMap;
   \*********************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 26:0-14 */
 /***/ ((module) => {
 
 /**
@@ -3222,7 +3195,6 @@ module.exports = arrayReduce;
   \**********************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 12:0-14 */
 /***/ ((module) => {
 
 /**
@@ -3247,7 +3219,6 @@ module.exports = asciiToArray;
   \********************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 15:0-14 */
 /***/ ((module) => {
 
 /** Used to match words composed of alphanumeric characters. */
@@ -3275,7 +3246,6 @@ module.exports = asciiWords;
   \********************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 28:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var Symbol = __webpack_require__(/*! ./_Symbol */ "./node_modules/lodash/_Symbol.js"),
@@ -3316,7 +3286,6 @@ module.exports = baseGetTag;
   \************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 14:0-14 */
 /***/ ((module) => {
 
 /**
@@ -3343,7 +3312,6 @@ module.exports = basePropertyOf;
   \*******************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 31:0-14 */
 /***/ ((module) => {
 
 /**
@@ -3387,7 +3355,6 @@ module.exports = baseSlice;
   \**********************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 37:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var Symbol = __webpack_require__(/*! ./_Symbol */ "./node_modules/lodash/_Symbol.js"),
@@ -3437,7 +3404,6 @@ module.exports = baseToString;
   \*******************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 18:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var baseSlice = __webpack_require__(/*! ./_baseSlice */ "./node_modules/lodash/_baseSlice.js");
@@ -3468,7 +3434,6 @@ module.exports = castSlice;
   \*************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 33:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var castSlice = __webpack_require__(/*! ./_castSlice */ "./node_modules/lodash/_castSlice.js"),
@@ -3514,7 +3479,6 @@ module.exports = createCaseFirst;
   \**************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 24:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var arrayReduce = __webpack_require__(/*! ./_arrayReduce */ "./node_modules/lodash/_arrayReduce.js"),
@@ -3551,7 +3515,6 @@ module.exports = createCompounder;
   \**********************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 71:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var basePropertyOf = __webpack_require__(/*! ./_basePropertyOf */ "./node_modules/lodash/_basePropertyOf.js");
@@ -3635,7 +3598,6 @@ module.exports = deburrLetter;
   \********************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__.g, __webpack_require__.* */
-/*! CommonJS bailout: module.exports is used directly at 4:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 /** Detect free variable `global` from Node.js. */
@@ -3652,7 +3614,6 @@ module.exports = freeGlobal;
   \**********************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 6:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var overArg = __webpack_require__(/*! ./_overArg */ "./node_modules/lodash/_overArg.js");
@@ -3671,7 +3632,6 @@ module.exports = getPrototype;
   \*******************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 46:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var Symbol = __webpack_require__(/*! ./_Symbol */ "./node_modules/lodash/_Symbol.js");
@@ -3730,7 +3690,6 @@ module.exports = getRawTag;
   \********************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 26:0-14 */
 /***/ ((module) => {
 
 /** Used to compose unicode character classes. */
@@ -3769,7 +3728,6 @@ module.exports = hasUnicode;
   \************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 15:0-14 */
 /***/ ((module) => {
 
 /** Used to detect strings that need a more robust regexp to match words. */
@@ -3797,7 +3755,6 @@ module.exports = hasUnicodeWord;
   \************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 22:0-14 */
 /***/ ((module) => {
 
 /** Used for built-in method references. */
@@ -3832,7 +3789,6 @@ module.exports = objectToString;
   \*****************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 15:0-14 */
 /***/ ((module) => {
 
 /**
@@ -3860,7 +3816,6 @@ module.exports = overArg;
   \**************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 9:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var freeGlobal = __webpack_require__(/*! ./_freeGlobal */ "./node_modules/lodash/_freeGlobal.js");
@@ -3882,7 +3837,6 @@ module.exports = root;
   \***********************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 18:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var asciiToArray = __webpack_require__(/*! ./_asciiToArray */ "./node_modules/lodash/_asciiToArray.js"),
@@ -3913,7 +3867,6 @@ module.exports = stringToArray;
   \************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 40:0-14 */
 /***/ ((module) => {
 
 /** Used to compose unicode character classes. */
@@ -3966,7 +3919,6 @@ module.exports = unicodeToArray;
   \**********************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 69:0-14 */
 /***/ ((module) => {
 
 /** Used to compose unicode character classes. */
@@ -4048,7 +4000,6 @@ module.exports = unicodeWords;
   \******************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 29:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var capitalize = __webpack_require__(/*! ./capitalize */ "./node_modules/lodash/capitalize.js"),
@@ -4090,7 +4041,6 @@ module.exports = camelCase;
   \*******************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 23:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var toString = __webpack_require__(/*! ./toString */ "./node_modules/lodash/toString.js"),
@@ -4126,7 +4076,6 @@ module.exports = capitalize;
   \***************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 45:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var deburrLetter = __webpack_require__(/*! ./_deburrLetter */ "./node_modules/lodash/_deburrLetter.js"),
@@ -4184,7 +4133,6 @@ module.exports = deburr;
   \****************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 26:0-14 */
 /***/ ((module) => {
 
 /**
@@ -4223,7 +4171,6 @@ module.exports = isArray;
   \*********************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 29:0-14 */
 /***/ ((module) => {
 
 /**
@@ -4265,7 +4212,6 @@ module.exports = isObjectLike;
   \**********************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 62:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var baseGetTag = __webpack_require__(/*! ./_baseGetTag */ "./node_modules/lodash/_baseGetTag.js"),
@@ -4340,7 +4286,6 @@ module.exports = isPlainObject;
   \*****************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 29:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var baseGetTag = __webpack_require__(/*! ./_baseGetTag */ "./node_modules/lodash/_baseGetTag.js"),
@@ -4382,7 +4327,6 @@ module.exports = isSymbol;
   \*****************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 28:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var baseToString = __webpack_require__(/*! ./_baseToString */ "./node_modules/lodash/_baseToString.js");
@@ -4423,7 +4367,6 @@ module.exports = toString;
   \*******************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 22:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var createCaseFirst = __webpack_require__(/*! ./_createCaseFirst */ "./node_modules/lodash/_createCaseFirst.js");
@@ -4458,7 +4401,6 @@ module.exports = upperFirst;
   \**************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 35:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var asciiWords = __webpack_require__(/*! ./_asciiWords */ "./node_modules/lodash/_asciiWords.js"),
@@ -4506,7 +4448,6 @@ module.exports = words;
   \*********************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 65:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -4610,7 +4551,6 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
   \***************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 102:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -4726,7 +4666,6 @@ module.exports = checkPropTypes;
   \********************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 15:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -4759,7 +4698,6 @@ module.exports = function(isValidElement) {
   \************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 38:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -5364,7 +5302,6 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
   \******************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 14:2-16 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 /**
@@ -5392,7 +5329,6 @@ if (true) {
   \*************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 12:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -5802,7 +5738,6 @@ exports.default = isSupported;
   \**********************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 56:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -5871,7 +5806,6 @@ module.exports = KeyEscapeUtils;
   \*******************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 109:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -5993,7 +5927,6 @@ module.exports = PooledClass;
   \*************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 129:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -6135,7 +6068,6 @@ module.exports = React;
   \************************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 137:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -6288,7 +6220,6 @@ module.exports = {
   \*********************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 188:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -6489,7 +6420,6 @@ module.exports = ReactChildren;
   \******************************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 376:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -6878,7 +6808,6 @@ module.exports = ReactComponentTreeHook;
   \*************************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 26:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -6917,7 +6846,6 @@ module.exports = ReactCurrentOwner;
   \*************************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 166:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -7096,7 +7024,6 @@ module.exports = ReactDOMFactories;
   \********************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 338:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -7447,7 +7374,6 @@ module.exports = ReactElement;
   \**************************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 17:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -7477,7 +7403,6 @@ module.exports = REACT_ELEMENT_TYPE;
   \*****************************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 252:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -7742,7 +7667,6 @@ module.exports = ReactElementValidator;
   \****************************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 92:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -7847,7 +7771,6 @@ module.exports = ReactNoopUpdateQueue;
   \**********************************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 22:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -7882,7 +7805,6 @@ module.exports = ReactPropTypeLocationNames;
   \**********************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 16:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -7911,7 +7833,6 @@ module.exports = factory(isValidElement);
   \****************************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 14:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -7938,7 +7859,6 @@ module.exports = ReactPropTypesSecret;
   \********************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 11:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -7963,7 +7883,6 @@ module.exports = '15.7.0';
   \*************************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 23:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -7999,7 +7918,6 @@ module.exports = canDefineProperty;
   \**************************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 84:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -8096,7 +8014,6 @@ module.exports = checkReactTypeSpec;
   \*******************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 20:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -8129,7 +8046,6 @@ module.exports = factory(Component, isValidElement, ReactNoopUpdateQueue);
   \*********************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 38:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -8180,7 +8096,6 @@ module.exports = getIteratorFn;
   \**************************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 62:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -8255,7 +8170,6 @@ module.exports = lowPriorityWarning;
   \*****************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 35:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -8303,7 +8217,6 @@ module.exports = onlyChild;
   \**************************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 36:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -8352,7 +8265,6 @@ module.exports = reactProdInvariant;
   \***************************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 173:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -37979,16 +37891,6 @@ exports.unstable_wrap = unstable_wrap;
 /*! export unstable_wrapCallback [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_exports__ */
-/*! CommonJS bailout: exports.unstable_now(...) prevents optimization as exports is passed as call context at 52:26-46 */
-/*! CommonJS bailout: exports.unstable_now(...) prevents optimization as exports is passed as call context at 125:13-33 */
-/*! CommonJS bailout: exports.unstable_now(...) prevents optimization as exports is passed as call context at 149:24-44 */
-/*! CommonJS bailout: exports.unstable_now(...) prevents optimization as exports is passed as call context at 193:15-35 */
-/*! CommonJS bailout: exports.unstable_now(...) prevents optimization as exports is passed as call context at 548:28-48 */
-/*! CommonJS bailout: exports.unstable_now(...) prevents optimization as exports is passed as call context at 565:25-45 */
-/*! CommonJS bailout: exports.unstable_shouldYield(...) prevents optimization as exports is passed as call context at 578:74-102 */
-/*! CommonJS bailout: exports.unstable_now(...) prevents optimization as exports is passed as call context at 591:20-40 */
-/*! CommonJS bailout: exports.unstable_now(...) prevents optimization as exports is passed as call context at 695:20-40 */
-/*! CommonJS bailout: exports.unstable_now(...) prevents optimization as exports is passed as call context at 804:24-44 */
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -38912,7 +38814,6 @@ if (false) {} else {
   \**************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__, module.id */
-/*! CommonJS bailout: module.exports is used directly at 19:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var api = __webpack_require__(/*! !../style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
@@ -38943,7 +38844,6 @@ module.exports = content.locals || {};
   \****************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__.nc, __webpack_require__.* */
-/*! CommonJS bailout: module.exports is used directly at 230:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
