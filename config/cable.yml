@@ -1,10 +1,9 @@
+production:
+  adapter: redis
+  url: redis://redistogo:dc288d1cdb2054203bfb63ba07ce1e08@scat.redistogo.com:10638/
+
 development:
   adapter: async
 
 test:
   adapter: async
-
-production:
-  adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
-  channel_prefix: TandemChallenge_production
