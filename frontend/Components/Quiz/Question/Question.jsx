@@ -5,10 +5,14 @@ import { shuffle } from '../../../util/question_gen_util'
 import styles from './Question.module.css'
 
 const Question = ({ question, setAnswer, questionNum, currentAnswers }) => {
-  const answers = [...question.incorrect]
-  answers.push(question.correct)
+  const [choices, setChoices] = useState([])
   useEffect(() => {
-    shuffle(answers)
+    const answers = [...question.incorrect]
+    answers.push(question.correct)
+    if (currentAnswers[questionNum] === null) {
+      shuffle(answers)
+    }
+    setChoices(answers)
   }, [question])
 
   const handleAnswerClick = () => {
@@ -22,9 +26,9 @@ const Question = ({ question, setAnswer, questionNum, currentAnswers }) => {
       </h2>
       <ul>
         {
-          answers.map((answer, answerNum) => {
+          choices.map((answer, answerNum) => {
             const liStyles = [styles.answer]
-            if (currentAnswers[questionNum] && answerNum === currentAnswers[questionNum][1]) {
+            if (currentAnswers[questionNum] && answer === currentAnswers[questionNum][0]) {
               liStyles.push(styles.selected)
             }
             return (

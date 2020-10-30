@@ -524,10 +524,10 @@ var LeaderBoard = function LeaderBoard(_ref) {
   }, [score]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: (_LeaderBoard_module_css__WEBPACK_IMPORTED_MODULE_1___default().leaderBoardWrapper)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Leader Board"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, topScores.map(function (score, idx) {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Leader Board"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, topScores.map(function (scor, idx) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-      key: score.id
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "".concat(idx + 1, ". ").concat(score.username)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, score.score));
+      key: scor.id
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "".concat(idx + 1, ". ").concat(scor.username)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, scor.score));
   })));
 };
 
@@ -561,13 +561,21 @@ function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableTo
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
@@ -581,21 +589,31 @@ var Question = function Question(_ref) {
       questionNum = _ref.questionNum,
       currentAnswers = _ref.currentAnswers;
 
-  var answers = _toConsumableArray(question.incorrect);
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      choices = _useState2[0],
+      setChoices = _useState2[1];
 
-  answers.push(question.correct);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    (0,_util_question_gen_util__WEBPACK_IMPORTED_MODULE_3__.shuffle)(answers);
+    var answers = _toConsumableArray(question.incorrect);
+
+    answers.push(question.correct);
+
+    if (currentAnswers[questionNum] === null) {
+      (0,_util_question_gen_util__WEBPACK_IMPORTED_MODULE_3__.shuffle)(answers);
+    }
+
+    setChoices(answers);
   }, [question]);
 
   var handleAnswerClick = function handleAnswerClick() {};
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: (_Question_module_css__WEBPACK_IMPORTED_MODULE_4___default().questionWrapper)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, question.question), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, answers.map(function (answer, answerNum) {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, question.question), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, choices.map(function (answer, answerNum) {
     var liStyles = [(_Question_module_css__WEBPACK_IMPORTED_MODULE_4___default().answer)];
 
-    if (currentAnswers[questionNum] && answerNum === currentAnswers[questionNum][1]) {
+    if (currentAnswers[questionNum] && answer === currentAnswers[questionNum][0]) {
       liStyles.push((_Question_module_css__WEBPACK_IMPORTED_MODULE_4___default().selected));
     }
 
@@ -2599,10 +2617,6 @@ module.exports = exports;
   \***************************************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: __webpack_exports__, module, __webpack_require__, module.id */
-/*! CommonJS bailout: exports is used directly at 3:0-7 */
-/*! CommonJS bailout: exports.push(...) prevents optimization as exports is passed as call context at 5:0-12 */
-/*! CommonJS bailout: exports is used directly at 15:17-24 */
-/*! CommonJS bailout: module.exports is used directly at 15:0-14 */
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports

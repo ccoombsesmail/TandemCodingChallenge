@@ -16,14 +16,14 @@ const LeaderBoard = ({ score }) => {
       <h1>Leader Board</h1>
       <ul>
         {
-          topScores.map((score, idx) => {
+          topScores.map((scor, idx) => {
             return (
-              <li key={score.id}>
+              <li key={scor.id}>
                 <span>
-                  {`${idx + 1}. ${score.username}`}
+                  {`${idx + 1}. ${scor.username}`}
                 </span>
                 <b>
-                  {score.score}
+                  {scor.score}
                 </b>
               </li>
             )
