@@ -1,0 +1,47 @@
+.messageFormWrapper{
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid gray;
+  
+}
+
+.messageForm {
+  width: 80%;
+}
+
+
+.messageSubmit {
+  width: 100%;
+  border: solid  #3A3A3D 1px;
+  border-radius: 6px;
+  background-color: thistle;
+  padding: 5px;
+  height: 30px;
+  font-weight: 700;
+  color: black;
+  margin-top: 5px;
+  
+}
+
+.chatButton {
+
+  border-radius: 5px;
+  background: #642B73;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+  padding: 5px;
+  width: 100px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 202;
+  margin-right: 20px;
+  margin-top: 5px;
+
+
+}

@@ -169,7 +169,9 @@ var App = /*#__PURE__*/function (_React$Component) {
         animationIn: "slideInLeft"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Components_LeaderBoard_LeaderBoard__WEBPACK_IMPORTED_MODULE_7__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Components_Quiz_Quiz__WEBPACK_IMPORTED_MODULE_1__.default, {
         currentUser: currentUser
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Components_Chat_Chat__WEBPACK_IMPORTED_MODULE_8__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Components_Chat_Chat__WEBPACK_IMPORTED_MODULE_8__.default, {
+        currentUser: currentUser
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: (_App_module_css__WEBPACK_IMPORTED_MODULE_4___default().brains)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         alt: "",
@@ -240,16 +242,221 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _Chat_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Chat.module.css */ "./frontend/Components/Chat/Chat.module.css");
 /* harmony import */ var _Chat_module_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_Chat_module_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _MessageForm_MessageForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MessageForm/MessageForm */ "./frontend/Components/Chat/MessageForm/MessageForm.jsx");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
 
-var Chat = function Chat() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: (_Chat_module_css__WEBPACK_IMPORTED_MODULE_1___default().chatWrapper)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, "hey"));
-};
+
+
+var Chat = /*#__PURE__*/function (_React$Component) {
+  _inherits(Chat, _React$Component);
+
+  var _super = _createSuper(Chat);
+
+  function Chat(props) {
+    var _this;
+
+    _classCallCheck(this, Chat);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      messages: []
+    };
+    _this.bottom = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
+    return _this;
+  }
+
+  _createClass(Chat, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      App.cable.subscriptions.create({
+        channel: 'ChatChannel'
+      }, {
+        received: function received(data) {
+          _this2.setState({
+            messages: [].concat(_toConsumableArray(_this2.state.messages), [[data.message, data.username, data.color]])
+          });
+        },
+        speak: function speak(data) {
+          return this.perform('speak', data);
+        }
+      });
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      if (this.bottom.current !== null) {
+        this.bottom.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'start'
+        });
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      var messageList = this.state.messages.map(function (message, idx) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+          className: (_Chat_module_css__WEBPACK_IMPORTED_MODULE_1___default().messageLi),
+          key: idx
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+          style: {
+            color: message[2]
+          },
+          className: (_Chat_module_css__WEBPACK_IMPORTED_MODULE_1___default().username)
+        }, "".concat(message[1], ":   ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+          className: (_Chat_module_css__WEBPACK_IMPORTED_MODULE_1___default().messageBody)
+        }, "".concat(message[0]))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          ref: _this3.bottom
+        }));
+      });
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: (_Chat_module_css__WEBPACK_IMPORTED_MODULE_1___default().chatWrapper)
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+        className: (_Chat_module_css__WEBPACK_IMPORTED_MODULE_1___default().messageList)
+      }, messageList), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_MessageForm_MessageForm__WEBPACK_IMPORTED_MODULE_2__.default, {
+        currentUser: this.props.currentUser
+      }));
+    }
+  }]);
+
+  return Chat;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Chat);
+
+/***/ }),
+
+/***/ "./frontend/Components/Chat/MessageForm/MessageForm.jsx":
+/*!**************************************************************!*\
+  !*** ./frontend/Components/Chat/MessageForm/MessageForm.jsx ***!
+  \**************************************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _MessageForm_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MessageForm.module.css */ "./frontend/Components/Chat/MessageForm/MessageForm.module.css");
+/* harmony import */ var _MessageForm_module_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_MessageForm_module_css__WEBPACK_IMPORTED_MODULE_1__);
+var _this = undefined;
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+var MessageForm = function MessageForm(_ref) {
+  var currentUser = _ref.currentUser;
+  var colors = ["#A86DFF", "0D6F86", "#1C6BBA", "#851F20", "#54BC75", "#DB80E1"];
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      body = _useState2[0],
+      setBody = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(colors[Math.floor(Math.random() * 6)]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      usernameColor = _useState4[0],
+      setColor = _useState4[1];
+
+  var update = function update() {
+    return function (e) {
+      setBody(e.currentTarget.value);
+    };
+  };
+
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    var username = "Anonymous";
+
+    if (currentUser) {
+      username = currentUser.username;
+    }
+
+    App.cable.subscriptions.subscriptions[1].speak({
+      body: body,
+      username: username,
+      color: usernameColor
+    });
+    setBody('');
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: (_MessageForm_module_css__WEBPACK_IMPORTED_MODULE_1___default().messageFormWrapper)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+    className: (_MessageForm_module_css__WEBPACK_IMPORTED_MODULE_1___default().messageForm),
+    onSubmit: handleSubmit.bind(_this)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    className: (_MessageForm_module_css__WEBPACK_IMPORTED_MODULE_1___default().messageSubmit),
+    type: "text",
+    value: body,
+    onChange: update('body'),
+    placeholder: "Send A Message",
+    autoComplete: "off"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: (_MessageForm_module_css__WEBPACK_IMPORTED_MODULE_1___default().submitButtonWrapper)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "submit",
+    className: (_MessageForm_module_css__WEBPACK_IMPORTED_MODULE_1___default().chatButton)
+  }, "Chat"))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MessageForm);
 
 /***/ }),
 
@@ -1078,6 +1285,32 @@ module.exports = content.locals || {};
 var api = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 
 var content = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./Chat.module.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./frontend/Components/Chat/Chat.module.css");
+
+content = content.__esModule ? content["default"] : content;
+
+if (typeof content === 'string') {
+  content = [[module.id, content, '']];
+}
+
+var options = {};
+options.insert = "head";
+options.singleton = false;
+var update = api(content, options);
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ "./frontend/Components/Chat/MessageForm/MessageForm.module.css":
+/*!*********************************************************************!*\
+  !*** ./frontend/Components/Chat/MessageForm/MessageForm.module.css ***!
+  \*********************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__, module.id */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var api = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+
+var content = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./MessageForm.module.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./frontend/Components/Chat/MessageForm/MessageForm.module.css");
 
 content = content.__esModule ? content["default"] : content;
 
@@ -2374,20 +2607,44 @@ module.exports = exports;
   \********************************************************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: __webpack_exports__, module, __webpack_require__, module.id */
-/*! CommonJS bailout: exports is used directly at 3:0-7 */
-/*! CommonJS bailout: exports.push(...) prevents optimization as exports is passed as call context at 5:0-12 */
-/*! CommonJS bailout: exports is used directly at 10:17-24 */
-/*! CommonJS bailout: module.exports is used directly at 10:0-14 */
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".Chat-module__chatWrapper--266U4 {\n  width: 300px;\n  height: 70vh;\n  background-color: white;\n  border: 2px solid black;\n  border-radius: 7px;\n  margin-top: 100px;\n  margin-right: 40px;\n    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  z-index: 202;\n}", ""]);
+exports.push([module.id, ".Chat-module__chatWrapper--266U4 {\n  width: 300px;\n  height: 70vh;\n  background-color: white;\n  border: 2px solid black;\n  border-radius: 7px;\n  margin-top: 100px;\n  margin-right: 40px;\n    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  z-index: 202;\n  position: relative;\n}\n\n\n\n.Chat-module__messageList--3Hjvc{\n    overflow-y: scroll;\n    height: 83%;\n    width: 100%;\n    /* width: 300px; */\n    background-color: white;\n    /* color: #EFEFF1; */\n    font-weight: 700;\n    border-bottom: none;\n    \n}\n\n.Chat-module__messageLi--21rRS {\n    list-style: none;\n    margin: 10px;\n}\n\n.Chat-module__username--2eFlk {\n    color:#A86DFF;\n}\n\n\n.Chat-module__messageList--3Hjvc::-webkit-scrollbar {\n  display: none;\n}\n\n.Chat-module__messageList--3Hjvc {\n  -ms-overflow-style: none;  /* IE and Edge */\n  scrollbar-width: none;  /* Firefox */\n}", ""]);
 // Exports
 exports.locals = {
-	"chatWrapper": "Chat-module__chatWrapper--266U4"
+	"chatWrapper": "Chat-module__chatWrapper--266U4",
+	"messageList": "Chat-module__messageList--3Hjvc",
+	"messageLi": "Chat-module__messageLi--21rRS",
+	"username": "Chat-module__username--2eFlk"
+};
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./frontend/Components/Chat/MessageForm/MessageForm.module.css":
+/*!***************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./frontend/Components/Chat/MessageForm/MessageForm.module.css ***!
+  \***************************************************************************************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: __webpack_exports__, module, __webpack_require__, module.id */
+/***/ ((module, exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.id, ".MessageForm-module__messageFormWrapper--1L4JI{\n  position: absolute;\n  bottom: 0;\n  margin-bottom: 10px;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  border-top: 1px solid gray;\n  \n}\n\n.MessageForm-module__messageForm--1kgfN {\n  width: 80%;\n}\n\n\n.MessageForm-module__messageSubmit--3na-3 {\n  width: 100%;\n  border: solid  #3A3A3D 1px;\n  border-radius: 6px;\n  background-color: thistle;\n  padding: 5px;\n  height: 30px;\n  font-weight: 700;\n  color: black;\n  margin-top: 5px;\n  \n}\n\n.MessageForm-module__chatButton--3RISF {\n\n  border-radius: 5px;\n  background: #642B73;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  width: 100px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n  margin-right: 20px;\n  margin-top: 5px;\n\n\n}", ""]);
+// Exports
+exports.locals = {
+	"messageFormWrapper": "MessageForm-module__messageFormWrapper--1L4JI",
+	"messageForm": "MessageForm-module__messageForm--1kgfN",
+	"messageSubmit": "MessageForm-module__messageSubmit--3na-3",
+	"chatButton": "MessageForm-module__chatButton--3RISF"
 };
 module.exports = exports;
 
@@ -2446,13 +2703,17 @@ module.exports = exports;
   \********************************************************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: __webpack_exports__, module, __webpack_require__, module.id */
+/*! CommonJS bailout: exports is used directly at 3:0-7 */
+/*! CommonJS bailout: exports.push(...) prevents optimization as exports is passed as call context at 5:0-12 */
+/*! CommonJS bailout: exports is used directly at 21:17-24 */
+/*! CommonJS bailout: module.exports is used directly at 21:0-14 */
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".Quiz-module__quizWrapper--1ekNE{ \n display: flex;\n flex-direction: column;\n align-items: center;\n width: 542px;\n position: relative;\n margin-top: 90px;\n z-index: 200;\n}\n\n.Quiz-module__buttonsWrapper--2TSJ7 {\n  width: 100%;\n  margin-top: 40px;\n  position: relative;\n}\n\n.Quiz-module__prevButton--EFVAY {\n  position: absolute;\n  left: 0px;\n  bottom: 0px;\n  border-radius: 5px;\n  background: #800080;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #ffc0cb, #800080);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #ffc0cb, #800080); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  width: 100px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n}\n\n.Quiz-module__nextButton--30OK0 {\n  position: absolute;\n  right: 0px;\n  bottom: 0px;\n  border-radius: 5px;\n  background: #642B73;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  width: 100px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n}\n\n\n.Quiz-module__animateWrapper--3j3Nj {\n  z-index: 100;\n}\n\n.Quiz-module__beginButton--o2RTW {\n  border-radius: 5px;\n  background: #642B73;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n  height: 60px;\n  width: 25vw;\n  font-size: 1.5vw;\n  margin-top: 20px;\n  text-transform: uppercase;\n  /* font-family: cursive; */\n}\n\n\n.Quiz-module__welcome--2Wq4I {\n  color: #50093f;\n}\n\n.Quiz-module__resultsLi--20kkt {\n  list-style: none;\n  width: 500px;\n  display: flex;\n  justify-content: space-between;\n  font-size: 20px;\n  padding: 8px;\n  border-radius: 5px;\n  border: 1px solid black;\n\n\n}\n\n.Quiz-module__correct--2cajk {\n  background-color: rgb(4,254,0);\n}\n\n.Quiz-module__incorrect--21oKJ {\n  background-color: red;\n}\n\n.Quiz-module__resultsLi--20kkt > span > b {\n  margin-right: 5px;\n}\n\n\n.Quiz-module__resultsWrapper--3Lv_L {\n  border-radius: 5px;\n   -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n}\n\n.Quiz-module__resultsOuterWrapper--qIviW {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n.Quiz-module__resultsOuterWrapper--qIviW > h1 {\n  margin-top: 50px;\n  margin-bottom: 50px;\n\n}\n\n.Quiz-module__resultsOuterWrapper--qIviW > h1 > b {\n  margin-left: 7px;\n}", ""]);
+exports.push([module.id, ".Quiz-module__quizWrapper--1ekNE{ \n display: flex;\n flex-direction: column;\n align-items: center;\n width: 542px;\n position: relative;\n margin-top: 90px;\n z-index: 200;\n}\n\n.Quiz-module__buttonsWrapper--2TSJ7 {\n  width: 100%;\n  margin-top: 40px;\n  position: relative;\n}\n\n.Quiz-module__prevButton--EFVAY {\n  position: absolute;\n  left: 0px;\n  bottom: 0px;\n  border-radius: 5px;\n  background: #642B73;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  width: 100px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n}\n\n.Quiz-module__nextButton--30OK0 {\n  position: absolute;\n  right: 0px;\n  bottom: 0px;\n  border-radius: 5px;\n  background: #642B73;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  width: 100px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n}\n\n\n.Quiz-module__animateWrapper--3j3Nj {\n  z-index: 100;\n}\n\n.Quiz-module__beginButton--o2RTW {\n  border-radius: 5px;\n  background: #642B73;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n  height: 60px;\n  width: 25vw;\n  font-size: 1.5vw;\n  margin-top: 20px;\n  text-transform: uppercase;\n  /* font-family: cursive; */\n}\n\n\n.Quiz-module__welcome--2Wq4I {\n  color: #50093f;\n}\n\n.Quiz-module__resultsLi--20kkt {\n  list-style: none;\n  width: 500px;\n  display: flex;\n  justify-content: space-between;\n  font-size: 20px;\n  padding: 8px;\n  border-radius: 5px;\n  border: 1px solid black;\n\n\n}\n\n.Quiz-module__correct--2cajk {\n  background-color: rgb(4,254,0);\n}\n\n.Quiz-module__incorrect--21oKJ {\n  background-color: red;\n}\n\n.Quiz-module__resultsLi--20kkt > span > b {\n  margin-right: 5px;\n}\n\n\n.Quiz-module__resultsWrapper--3Lv_L {\n  border-radius: 5px;\n   -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n}\n\n.Quiz-module__resultsOuterWrapper--qIviW {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n.Quiz-module__resultsOuterWrapper--qIviW > h1 {\n  margin-top: 50px;\n  margin-bottom: 50px;\n\n}\n\n.Quiz-module__resultsOuterWrapper--qIviW > h1 > b {\n  margin-left: 7px;\n}", ""]);
 // Exports
 exports.locals = {
 	"quizWrapper": "Quiz-module__quizWrapper--1ekNE",

@@ -10,4 +10,38 @@
   -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
   box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
   z-index: 202;
+  position: relative;
+}
+
+
+
+.messageList{
+    overflow-y: scroll;
+    height: 83%;
+    width: 100%;
+    /* width: 300px; */
+    background-color: white;
+    /* color: #EFEFF1; */
+    font-weight: 700;
+    border-bottom: none;
+    
+}
+
+.messageLi {
+    list-style: none;
+    margin: 10px;
+}
+
+.username {
+    color:#A86DFF;
+}
+
+
+.messageList::-webkit-scrollbar {
+  display: none;
+}
+
+.messageList {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }

@@ -95,7 +95,7 @@ class App extends React.Component {
             <LeaderBoard />
           </Animated>
           <Quiz currentUser={currentUser} />
-          <Chat /> 
+          <Chat currentUser={currentUser} /> 
         </div>
         <div className={styles.brains}>
           <img alt="" src="https://i.ibb.co/w7ZcC9s/mental-health.png" height="75px" width="75px" />
