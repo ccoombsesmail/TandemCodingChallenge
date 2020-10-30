@@ -24,8 +24,8 @@ export function shuffle(array) {
 
 export function checkAnswers(answers, questions) {
   let numCorrect = 0
-  for (let i = 0; i <questions.length; i++) {
-    if (questions[i].correct === answers[i][0]) {
+  for (let i = 0; i < questions.length; i++) {
+    if (answers[i] && questions[i].correct === answers[i][0]) {
       numCorrect++
     }
   }

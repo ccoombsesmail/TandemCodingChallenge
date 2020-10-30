@@ -69,6 +69,24 @@ header > h1 > b {
 }
 
 
+.scoresQuizChatWrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  z-index: 202;
+}
+
+.scoresQuizChatWrapper  > section {
+  width: 300px;
+  height: 70vh;
+  margin-right: 20px;
+  background-color: cadetblue;
+
+}
+
+
+
+
 .brains {
   height: 100%;
   width: 100%;

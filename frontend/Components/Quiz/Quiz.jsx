@@ -3,9 +3,10 @@ import 'animate.css/animate.min.css'
 import { Animated } from 'react-animated-css'
 import Question from './Question/Question'
 import { getRandomQuestions, checkAnswers } from '../../util/question_gen_util'
+import { createScore } from '../../util/scores_api_util'
 import styles from './Quiz.module.css'
 
-const Quiz = () => {
+const Quiz = ({ currentUser }) => {
 
   const [questionNum, setQuestionNum] = useState(-1)
   const [questions, setQuestions] = useState(getRandomQuestions())
@@ -45,6 +46,8 @@ const Quiz = () => {
   }
 
   const beginButton = () => {
+    setQuestions(getRandomQuestions())
+    setCurrentAnswers(new Array(10).fill(null))
     setQuestionNum(0)
     setShowWelcome(false)
   }
@@ -60,6 +63,17 @@ const Quiz = () => {
     setQuestionNum(-1)
     setNumCorrect(numCorrect)
     setShowResults(true)
+    if (currentUser) {
+      createScore({
+        username: currentUser.username,
+        score: numCorrect,
+      }).then((res) => console.log(res))
+    } else {
+      createScore({
+        username: 'Anonymous',
+        score: numCorrect,
+      }).then((res) => console.log(res))
+    }
   }
 
   return (
@@ -104,16 +118,18 @@ const Quiz = () => {
     }
       {
           showResults && questionNum === -1 ? (
-            <div>
+            <div className={styles.resultsOuterWrapper}>
               <h1>
                 Your Score:
-                {numCorrect} / 10 
+                <b>
+                  {numCorrect} / 10 
+                </b>
               </h1>
               <ul className={styles.resultsWrapper}>
                 {
                   questions.map((question, qNum) => {
                     const liStyles = [styles.resultsLi]
-                    if (question.correct === currentAnswers[qNum][0]) {
+                    if (currentAnswers[qNum] && question.correct === currentAnswers[qNum][0]) {
                       liStyles.push(styles.correct)
                     } else {
                       liStyles.push(styles.incorrect)
@@ -126,7 +142,7 @@ const Quiz = () => {
                         </span>
                         <span>
                           <b>Selected:</b>
-                          {currentAnswers[qNum][0]}
+                          {currentAnswers[qNum] ? currentAnswers[qNum][0] : 'No Answer'}
                         </span>
                       </li>
                     )

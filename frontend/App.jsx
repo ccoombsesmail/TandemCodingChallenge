@@ -1,8 +1,12 @@
 import React from 'react'
 import Quiz from './Components/Quiz/Quiz'
+import 'animate.css/animate.min.css'
+import { Animated } from 'react-animated-css'
 import styles from './App.module.css'
 import SessionForm from './Components/SessionForm/SessionForm'
 import { deleteSession } from './util/session_api_util'
+import LeaderBoard from './Components/LeaderBoard/LeaderBoard'
+import Chat from './Components/Chat/Chat'
 
 class App extends React.Component {
 
@@ -86,7 +90,13 @@ class App extends React.Component {
         {
          showLogin === true ? <SessionForm login={this.login} formType={formType} toggleForm={this.toggleForm} /> : null
         }
-        <Quiz />
+        <div className={styles.scoresQuizChatWrapper}>
+          <Animated animationIn="slideInLeft">
+            <LeaderBoard />
+          </Animated>
+          <Quiz currentUser={currentUser} />
+          <Chat /> 
+        </div>
         <div className={styles.brains}>
           <img alt="" src="https://i.ibb.co/w7ZcC9s/mental-health.png" height="75px" width="75px" />
           <img alt="" src="https://i.ibb.co/w7ZcC9s/mental-health.png" height="75px" width="75px" />

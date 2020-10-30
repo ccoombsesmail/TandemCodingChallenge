@@ -18,10 +18,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _Components_Quiz_Quiz__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Components/Quiz/Quiz */ "./frontend/Components/Quiz/Quiz.jsx");
-/* harmony import */ var _App_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App.module.css */ "./frontend/App.module.css");
-/* harmony import */ var _App_module_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_App_module_css__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Components_SessionForm_SessionForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/SessionForm/SessionForm */ "./frontend/Components/SessionForm/SessionForm.jsx");
-/* harmony import */ var _util_session_api_util__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./util/session_api_util */ "./frontend/util/session_api_util.js");
+/* harmony import */ var animate_css_animate_min_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! animate.css/animate.min.css */ "./node_modules/animate.css/animate.min.css");
+/* harmony import */ var animate_css_animate_min_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(animate_css_animate_min_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_animated_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-animated-css */ "./node_modules/react-animated-css/lib/index.js");
+/* harmony import */ var _App_module_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./App.module.css */ "./frontend/App.module.css");
+/* harmony import */ var _App_module_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_App_module_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _Components_SessionForm_SessionForm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Components/SessionForm/SessionForm */ "./frontend/Components/SessionForm/SessionForm.jsx");
+/* harmony import */ var _util_session_api_util__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./util/session_api_util */ "./frontend/util/session_api_util.js");
+/* harmony import */ var _Components_LeaderBoard_LeaderBoard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Components/LeaderBoard/LeaderBoard */ "./frontend/Components/LeaderBoard/LeaderBoard.jsx");
+/* harmony import */ var _Components_Chat_Chat__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Components/Chat/Chat */ "./frontend/Components/Chat/Chat.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -43,6 +48,10 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
 
 
 
@@ -93,7 +102,7 @@ var App = /*#__PURE__*/function (_React$Component) {
     value: function logout() {
       var _this2 = this;
 
-      (0,_util_session_api_util__WEBPACK_IMPORTED_MODULE_4__.deleteSession)().then(function () {
+      (0,_util_session_api_util__WEBPACK_IMPORTED_MODULE_6__.deleteSession)().then(function () {
         _this2.setState({
           currentUser: undefined
         });
@@ -117,45 +126,51 @@ var App = /*#__PURE__*/function (_React$Component) {
           formType = _this$state.formType,
           currentUser = _this$state.currentUser;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: (_App_module_css__WEBPACK_IMPORTED_MODULE_2___default().appWrapper)
+        className: (_App_module_css__WEBPACK_IMPORTED_MODULE_4___default().appWrapper)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("header", null, currentUser !== undefined ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Hello", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, currentUser.username)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: (_App_module_css__WEBPACK_IMPORTED_MODULE_2___default().left)
+        className: (_App_module_css__WEBPACK_IMPORTED_MODULE_4___default().left)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         alt: "",
         src: "https://i.ibb.co/w7ZcC9s/mental-health.png",
         height: "40px",
         width: "40px"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Tandemonium")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        className: (_App_module_css__WEBPACK_IMPORTED_MODULE_2___default().login),
+        className: (_App_module_css__WEBPACK_IMPORTED_MODULE_4___default().login),
         type: "button",
         onClick: this.logout
       }, "Logout")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: (_App_module_css__WEBPACK_IMPORTED_MODULE_2___default().left)
+        className: (_App_module_css__WEBPACK_IMPORTED_MODULE_4___default().left)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         alt: "",
         src: "https://i.ibb.co/w7ZcC9s/mental-health.png",
         height: "40px",
         width: "40px"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Tandemonium")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: (_App_module_css__WEBPACK_IMPORTED_MODULE_2___default().right)
+        className: (_App_module_css__WEBPACK_IMPORTED_MODULE_4___default().right)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        className: (_App_module_css__WEBPACK_IMPORTED_MODULE_2___default().login),
+        className: (_App_module_css__WEBPACK_IMPORTED_MODULE_4___default().login),
         type: "button",
         onClick: function onClick() {
           return _this3.toggleForm('Login');
         }
       }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        className: (_App_module_css__WEBPACK_IMPORTED_MODULE_2___default().login),
+        className: (_App_module_css__WEBPACK_IMPORTED_MODULE_4___default().login),
         type: "button",
         onClick: function onClick() {
           return _this3.toggleForm('Sign Up');
         }
-      }, "Sign Up")))), showLogin === true ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Components_SessionForm_SessionForm__WEBPACK_IMPORTED_MODULE_3__.default, {
+      }, "Sign Up")))), showLogin === true ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Components_SessionForm_SessionForm__WEBPACK_IMPORTED_MODULE_5__.default, {
         login: this.login,
         formType: formType,
         toggleForm: this.toggleForm
-      }) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Components_Quiz_Quiz__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: (_App_module_css__WEBPACK_IMPORTED_MODULE_2___default().brains)
+      }) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: (_App_module_css__WEBPACK_IMPORTED_MODULE_4___default().scoresQuizChatWrapper)
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_animated_css__WEBPACK_IMPORTED_MODULE_3__.Animated, {
+        animationIn: "slideInLeft"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Components_LeaderBoard_LeaderBoard__WEBPACK_IMPORTED_MODULE_7__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Components_Quiz_Quiz__WEBPACK_IMPORTED_MODULE_1__.default, {
+        currentUser: currentUser
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Components_Chat_Chat__WEBPACK_IMPORTED_MODULE_8__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: (_App_module_css__WEBPACK_IMPORTED_MODULE_4___default().brains)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         alt: "",
         src: "https://i.ibb.co/w7ZcC9s/mental-health.png",
@@ -204,6 +219,96 @@ var App = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
+
+/***/ }),
+
+/***/ "./frontend/Components/Chat/Chat.jsx":
+/*!*******************************************!*\
+  !*** ./frontend/Components/Chat/Chat.jsx ***!
+  \*******************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Chat_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Chat.module.css */ "./frontend/Components/Chat/Chat.module.css");
+/* harmony import */ var _Chat_module_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_Chat_module_css__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+var Chat = function Chat() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: (_Chat_module_css__WEBPACK_IMPORTED_MODULE_1___default().chatWrapper)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, "hey"));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Chat);
+
+/***/ }),
+
+/***/ "./frontend/Components/LeaderBoard/LeaderBoard.jsx":
+/*!*********************************************************!*\
+  !*** ./frontend/Components/LeaderBoard/LeaderBoard.jsx ***!
+  \*********************************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _LeaderBoard_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LeaderBoard.module.css */ "./frontend/Components/LeaderBoard/LeaderBoard.module.css");
+/* harmony import */ var _LeaderBoard_module_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_LeaderBoard_module_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _util_scores_api_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/scores_api_util */ "./frontend/util/scores_api_util.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var LeaderBoard = function LeaderBoard() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      topScores = _useState2[0],
+      setTopScores = _useState2[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    (0,_util_scores_api_util__WEBPACK_IMPORTED_MODULE_2__.getScores)().then(function (res) {
+      setTopScores(res.scores);
+    });
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: (_LeaderBoard_module_css__WEBPACK_IMPORTED_MODULE_1___default().leaderBoardWrapper)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, topScores.map(function (score, idx) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+      key: score.id
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "".concat(idx + 1, ". ").concat(score.username)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, score.score));
+  })));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LeaderBoard);
 
 /***/ }),
 
@@ -305,8 +410,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_animated_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-animated-css */ "./node_modules/react-animated-css/lib/index.js");
 /* harmony import */ var _Question_Question__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Question/Question */ "./frontend/Components/Quiz/Question/Question.jsx");
 /* harmony import */ var _util_question_gen_util__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../util/question_gen_util */ "./frontend/util/question_gen_util.js");
-/* harmony import */ var _Quiz_module_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Quiz.module.css */ "./frontend/Components/Quiz/Quiz.module.css");
-/* harmony import */ var _Quiz_module_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_Quiz_module_css__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _util_scores_api_util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../util/scores_api_util */ "./frontend/util/scores_api_util.js");
+/* harmony import */ var _Quiz_module_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Quiz.module.css */ "./frontend/Components/Quiz/Quiz.module.css");
+/* harmony import */ var _Quiz_module_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_Quiz_module_css__WEBPACK_IMPORTED_MODULE_6__);
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -334,7 +440,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var Quiz = function Quiz() {
+
+var Quiz = function Quiz(_ref) {
+  var currentUser = _ref.currentUser;
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1),
       _useState2 = _slicedToArray(_useState, 2),
       questionNum = _useState2[0],
@@ -409,6 +518,8 @@ var Quiz = function Quiz() {
   };
 
   var beginButton = function beginButton() {
+    setQuestions((0,_util_question_gen_util__WEBPACK_IMPORTED_MODULE_4__.getRandomQuestions)());
+    setCurrentAnswers(new Array(10).fill(null));
     setQuestionNum(0);
     setShowWelcome(false);
   };
@@ -424,18 +535,34 @@ var Quiz = function Quiz() {
     setQuestionNum(-1);
     setNumCorrect(numCorrect);
     setShowResults(true);
+
+    if (currentUser) {
+      (0,_util_scores_api_util__WEBPACK_IMPORTED_MODULE_5__.createScore)({
+        username: currentUser.username,
+        score: numCorrect
+      }).then(function (res) {
+        return console.log(res);
+      });
+    } else {
+      (0,_util_scores_api_util__WEBPACK_IMPORTED_MODULE_5__.createScore)({
+        username: 'Anonymous',
+        score: numCorrect
+      }).then(function (res) {
+        return console.log(res);
+      });
+    }
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_5___default().quizWrapper)
+    className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_6___default().quizWrapper)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_animated_css__WEBPACK_IMPORTED_MODULE_2__.Animated, {
     animationIn: "fadeIn",
     animationOut: "fadeOut",
     isVisible: showWelcome
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
-    className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_5___default().welcome)
+    className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_6___default().welcome)
   }, "Welcome! Click To Begin Your Quiz")), questionNum !== -1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_animated_css__WEBPACK_IMPORTED_MODULE_2__.Animated, {
-    className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_5___default().animateWrapper),
+    className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_6___default().animateWrapper),
     animationIn: animateIn,
     animationOut: animateOut,
     isVisible: isVisible
@@ -445,39 +572,41 @@ var Quiz = function Quiz() {
     setAnswer: setAnswer,
     question: questions[questionNum]
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_5___default().buttonsWrapper)
+    className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_6___default().buttonsWrapper)
   }, questionNum !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_5___default().prevButton),
+    className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_6___default().prevButton),
     type: "button",
     onClick: buttonPress('prev')
   }, "Previous") : null, questionNum !== questions.length - 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_5___default().nextButton),
+    className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_6___default().nextButton),
     type: "button",
     onClick: buttonPress('next')
   }, "Next") : null, questionNum === questions.length - 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_5___default().nextButton),
+    className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_6___default().nextButton),
     type: "button",
     onClick: handleSubmit
   }, "Submit") : null)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_5___default().beginButton),
+    className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_6___default().beginButton),
     type: "button",
     onClick: function onClick() {
       return beginButton();
     }
-  }, " Begin New Quiz "), showResults && questionNum === -1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Your Score:", numCorrect, " / 10"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
-    className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_5___default().resultsWrapper)
+  }, " Begin New Quiz "), showResults && questionNum === -1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_6___default().resultsOuterWrapper)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Your Score:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, numCorrect, " / 10")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+    className: (_Quiz_module_css__WEBPACK_IMPORTED_MODULE_6___default().resultsWrapper)
   }, questions.map(function (question, qNum) {
-    var liStyles = [(_Quiz_module_css__WEBPACK_IMPORTED_MODULE_5___default().resultsLi)];
+    var liStyles = [(_Quiz_module_css__WEBPACK_IMPORTED_MODULE_6___default().resultsLi)];
 
-    if (question.correct === currentAnswers[qNum][0]) {
-      liStyles.push((_Quiz_module_css__WEBPACK_IMPORTED_MODULE_5___default().correct));
+    if (currentAnswers[qNum] && question.correct === currentAnswers[qNum][0]) {
+      liStyles.push((_Quiz_module_css__WEBPACK_IMPORTED_MODULE_6___default().correct));
     } else {
-      liStyles.push((_Quiz_module_css__WEBPACK_IMPORTED_MODULE_5___default().incorrect));
+      liStyles.push((_Quiz_module_css__WEBPACK_IMPORTED_MODULE_6___default().incorrect));
     }
 
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
       className: liStyles.join(' ')
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Correct:"), question.correct), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Selected:"), currentAnswers[qNum][0]));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Correct:"), question.correct), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Selected:"), currentAnswers[qNum] ? currentAnswers[qNum][0] : 'No Answer'));
   }))) : null);
 };
 
@@ -821,13 +950,48 @@ function checkAnswers(answers, questions) {
   var numCorrect = 0;
 
   for (var i = 0; i < questions.length; i++) {
-    if (questions[i].correct === answers[i][0]) {
+    if (answers[i] && questions[i].correct === answers[i][0]) {
       numCorrect++;
     }
   }
 
   return numCorrect;
 }
+
+/***/ }),
+
+/***/ "./frontend/util/scores_api_util.js":
+/*!******************************************!*\
+  !*** ./frontend/util/scores_api_util.js ***!
+  \******************************************/
+/*! namespace exports */
+/*! export createScore [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export getScores [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createScore": () => /* binding */ createScore,
+/* harmony export */   "getScores": () => /* binding */ getScores
+/* harmony export */ });
+var createScore = function createScore(score) {
+  return $.ajax({
+    method: 'POST',
+    url: 'api/scores',
+    data: {
+      score: score
+    }
+  });
+};
+var getScores = function getScores() {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/scores'
+  });
+};
 
 /***/ }),
 
@@ -888,6 +1052,58 @@ var deleteSession = function deleteSession() {
 var api = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 
 var content = __webpack_require__(/*! !!../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./App.module.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./frontend/App.module.css");
+
+content = content.__esModule ? content["default"] : content;
+
+if (typeof content === 'string') {
+  content = [[module.id, content, '']];
+}
+
+var options = {};
+options.insert = "head";
+options.singleton = false;
+var update = api(content, options);
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ "./frontend/Components/Chat/Chat.module.css":
+/*!**************************************************!*\
+  !*** ./frontend/Components/Chat/Chat.module.css ***!
+  \**************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__, module.id */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var api = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+
+var content = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./Chat.module.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./frontend/Components/Chat/Chat.module.css");
+
+content = content.__esModule ? content["default"] : content;
+
+if (typeof content === 'string') {
+  content = [[module.id, content, '']];
+}
+
+var options = {};
+options.insert = "head";
+options.singleton = false;
+var update = api(content, options);
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ "./frontend/Components/LeaderBoard/LeaderBoard.module.css":
+/*!****************************************************************!*\
+  !*** ./frontend/Components/LeaderBoard/LeaderBoard.module.css ***!
+  \****************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__, module.id */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var api = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+
+var content = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./LeaderBoard.module.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./frontend/Components/LeaderBoard/LeaderBoard.module.css");
 
 content = content.__esModule ? content["default"] : content;
 
@@ -2137,14 +2353,63 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, "\nheader {\n  position: absolute;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  top: 0px;\n  height: 60px;\n  width: 100vw;\n  background-color: black;\n  z-index: 99999999999;\n  -moz-box-shadow:0 5px 5px rgba(182, 182, 182, 0.75);\n  -webkit-box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);\n  box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);\n}\n\nheader > h1 {\n  color: white;\n  margin-left: 20px\n}\nheader > h1 > b {\n  color: turquoise;\n  margin-right: 10px;\n  margin-left: 5px\n}\n\n.App-module__left--rAweV {\n  display: flex;\n  color: white;\n  margin-left: 20px;\n}\n\n.App-module__left--rAweV > h1 {\n  margin-left: 7px;\n}\n\n.App-module__login--3J-a2 {\n\n  border-radius: 5px;\n  background: #642B73;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  width: 100px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n  margin-right: 20px;\n\n\n}\n\n.App-module__appWrapper--3ot_W {\n  width: 100%;\n  height: 100vh;\n  display: flex;\n  align-items: center;\n  flex-direction: column;\n  background: #11998e;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  position: absolute;\n  box-sizing: border-box;\n  overflow: hidden;\n  z-index: 100;\n\n}\n\n\n.App-module__brains--qPppA {\n  height: 100%;\n  width: 100%;\n\n}\n\n.App-module__brains--qPppA img{\nposition:absolute ;\ndisplay:block ;\nz-index: 99;\n}\n\n.App-module__brains--qPppA img:nth-child(1){\n    left:-10%;\n    bottom: 0%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:-3s;\n\n}\n.App-module__brains--qPppA img:nth-child(2){\n    left:0%;\n    bottom: 0%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:-2s;\n\n}\n.App-module__brains--qPppA img:nth-child(3){\n    left:10%;\n    bottom: -10%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:3.5s;\n\n}\n.App-module__brains--qPppA img:nth-child(4){\n    left:20%;\n    bottom: -20%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:0s;\n\n}\n\n.App-module__brains--qPppA img:nth-child(5){\n    left:30%;\n    bottom: -15%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:1s;\n\n}\n\n.App-module__brains--qPppA img:nth-child(6){\n    left:40%;\n    bottom: 0%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:-.4s;\n\n}\n\n.App-module__brains--qPppA img:nth-child(7){\n    left:50%;\n    bottom: -30%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:1.2s;\n}\n\n\n.App-module__brains--qPppA img:nth-child(8){\n    left:60%;\n    bottom: -25%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:-2.4s;\n    transform: rotate(35deg);\n\n}  \n\n@keyframes App-module__fall--7MXEB{\n    0%{\n      transform: translateY(0) translateX(0) rotate(0deg);\n\n    }\n    100%{\n        \n         transform: translateY(-1200px) translateX(750px) rotate(720deg);\n\n      }\n    }", ""]);
+exports.push([module.id, "\nheader {\n  position: absolute;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  top: 0px;\n  height: 60px;\n  width: 100vw;\n  background-color: black;\n  z-index: 99999999999;\n  -moz-box-shadow:0 5px 5px rgba(182, 182, 182, 0.75);\n  -webkit-box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);\n  box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);\n}\n\nheader > h1 {\n  color: white;\n  margin-left: 20px\n}\nheader > h1 > b {\n  color: turquoise;\n  margin-right: 10px;\n  margin-left: 5px\n}\n\n.App-module__left--rAweV {\n  display: flex;\n  color: white;\n  margin-left: 20px;\n}\n\n.App-module__left--rAweV > h1 {\n  margin-left: 7px;\n}\n\n.App-module__login--3J-a2 {\n\n  border-radius: 5px;\n  background: #642B73;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  width: 100px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n  margin-right: 20px;\n\n\n}\n\n.App-module__appWrapper--3ot_W {\n  width: 100%;\n  height: 100vh;\n  display: flex;\n  align-items: center;\n  flex-direction: column;\n  background: #11998e;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  position: absolute;\n  box-sizing: border-box;\n  overflow: hidden;\n  z-index: 100;\n\n}\n\n\n.App-module__scoresQuizChatWrapper--188lX {\n  display: flex;\n  justify-content: space-between;\n  width: 100vw;\n  z-index: 202;\n}\n\n.App-module__scoresQuizChatWrapper--188lX  > section {\n  width: 300px;\n  height: 70vh;\n  margin-right: 20px;\n  background-color: cadetblue;\n\n}\n\n\n\n\n.App-module__brains--qPppA {\n  height: 100%;\n  width: 100%;\n\n}\n\n.App-module__brains--qPppA img{\nposition:absolute ;\ndisplay:block ;\nz-index: 99;\n}\n\n.App-module__brains--qPppA img:nth-child(1){\n    left:-10%;\n    bottom: 0%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:-3s;\n\n}\n.App-module__brains--qPppA img:nth-child(2){\n    left:0%;\n    bottom: 0%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:-2s;\n\n}\n.App-module__brains--qPppA img:nth-child(3){\n    left:10%;\n    bottom: -10%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:3.5s;\n\n}\n.App-module__brains--qPppA img:nth-child(4){\n    left:20%;\n    bottom: -20%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:0s;\n\n}\n\n.App-module__brains--qPppA img:nth-child(5){\n    left:30%;\n    bottom: -15%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:1s;\n\n}\n\n.App-module__brains--qPppA img:nth-child(6){\n    left:40%;\n    bottom: 0%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:-.4s;\n\n}\n\n.App-module__brains--qPppA img:nth-child(7){\n    left:50%;\n    bottom: -30%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:1.2s;\n}\n\n\n.App-module__brains--qPppA img:nth-child(8){\n    left:60%;\n    bottom: -25%; \n    animation:App-module__fall--7MXEB 15s linear infinite;\n    animation-delay:-2.4s;\n    transform: rotate(35deg);\n\n}  \n\n@keyframes App-module__fall--7MXEB{\n    0%{\n      transform: translateY(0) translateX(0) rotate(0deg);\n\n    }\n    100%{\n        \n         transform: translateY(-1200px) translateX(750px) rotate(720deg);\n\n      }\n    }", ""]);
 // Exports
 exports.locals = {
 	"left": "App-module__left--rAweV",
 	"login": "App-module__login--3J-a2",
 	"appWrapper": "App-module__appWrapper--3ot_W",
+	"scoresQuizChatWrapper": "App-module__scoresQuizChatWrapper--188lX",
 	"brains": "App-module__brains--qPppA",
 	"fall": "App-module__fall--7MXEB"
+};
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./frontend/Components/Chat/Chat.module.css":
+/*!********************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./frontend/Components/Chat/Chat.module.css ***!
+  \********************************************************************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: __webpack_exports__, module, __webpack_require__, module.id */
+/*! CommonJS bailout: exports is used directly at 3:0-7 */
+/*! CommonJS bailout: exports.push(...) prevents optimization as exports is passed as call context at 5:0-12 */
+/*! CommonJS bailout: exports is used directly at 10:17-24 */
+/*! CommonJS bailout: module.exports is used directly at 10:0-14 */
+/***/ ((module, exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.id, ".Chat-module__chatWrapper--266U4 {\n  width: 300px;\n  height: 70vh;\n  background-color: white;\n  border: 2px solid black;\n  border-radius: 7px;\n  margin-top: 100px;\n  margin-right: 40px;\n    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  z-index: 202;\n}", ""]);
+// Exports
+exports.locals = {
+	"chatWrapper": "Chat-module__chatWrapper--266U4"
+};
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./frontend/Components/LeaderBoard/LeaderBoard.module.css":
+/*!**********************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./frontend/Components/LeaderBoard/LeaderBoard.module.css ***!
+  \**********************************************************************************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: __webpack_exports__, module, __webpack_require__, module.id */
+/***/ ((module, exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.id, ".LeaderBoard-module__leaderBoardWrapper--2kfuA {\n  width: 300px;\n  height: 70vh;\n  background-color: white;\n  border: 2px solid black;\n  border-radius: 7px;\n  margin-top: 100px;\n  margin-left: 40px;\n    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  z-index: 202;\n}\n\n.LeaderBoard-module__leaderBoardWrapper--2kfuA > ul > li {\n  padding: 10px;\n  background-color: thistle;\n  border-bottom: 1px solid black;\n  background-color: #FE99D0;\n  display: flex;\n  justify-content: space-between;\n\n}\n\n.LeaderBoard-module__leaderBoardWrapper--2kfuA > ul {\n  background-color: #FE99D0;\n\n}\n\n\n", ""]);
+// Exports
+exports.locals = {
+	"leaderBoardWrapper": "LeaderBoard-module__leaderBoardWrapper--2kfuA"
 };
 module.exports = exports;
 
@@ -2181,17 +2446,13 @@ module.exports = exports;
   \********************************************************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: __webpack_exports__, module, __webpack_require__, module.id */
-/*! CommonJS bailout: exports is used directly at 3:0-7 */
-/*! CommonJS bailout: exports.push(...) prevents optimization as exports is passed as call context at 5:0-12 */
-/*! CommonJS bailout: exports is used directly at 20:17-24 */
-/*! CommonJS bailout: module.exports is used directly at 20:0-14 */
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".Quiz-module__quizWrapper--1ekNE{ \n display: flex;\n flex-direction: column;\n align-items: center;\n width: 542px;\n position: relative;\n margin-top: 90px;\n z-index: 200;\n}\n\n.Quiz-module__buttonsWrapper--2TSJ7 {\n  width: 100%;\n  margin-top: 40px;\n  position: relative;\n}\n\n.Quiz-module__prevButton--EFVAY {\n  position: absolute;\n  left: 0px;\n  bottom: 0px;\n  border-radius: 5px;\n  background: #800080;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #ffc0cb, #800080);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #ffc0cb, #800080); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  width: 100px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n}\n\n.Quiz-module__nextButton--30OK0 {\n  position: absolute;\n  right: 0px;\n  bottom: 0px;\n  border-radius: 5px;\n  background: #642B73;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  width: 100px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n}\n\n\n.Quiz-module__animateWrapper--3j3Nj {\n  z-index: 100;\n}\n\n.Quiz-module__beginButton--o2RTW {\n  border-radius: 5px;\n  background: #642B73;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n  height: 60px;\n  width: 25vw;\n  font-size: 1.5vw;\n  margin-top: 20px;\n  text-transform: uppercase;\n  font-family: cursive;\n}\n\n\n.Quiz-module__welcome--2Wq4I {\n  color: #50093f;\n}\n\n.Quiz-module__resultsLi--20kkt {\n  list-style: none;\n  width: 500px;\n  display: flex;\n  justify-content: space-between;\n  font-size: 20px;\n  padding: 5px;\n\n\n}\n\n.Quiz-module__correct--2cajk {\n  background-color: green;\n}\n\n.Quiz-module__incorrect--21oKJ {\n  background-color: red;\n}\n\n.Quiz-module__resultsLi--20kkt > span > b {\n  margin-right: 5px;\n}\n\n\n.Quiz-module__resultsWrapper--3Lv_L {\n  border-radius: 5px;\n}", ""]);
+exports.push([module.id, ".Quiz-module__quizWrapper--1ekNE{ \n display: flex;\n flex-direction: column;\n align-items: center;\n width: 542px;\n position: relative;\n margin-top: 90px;\n z-index: 200;\n}\n\n.Quiz-module__buttonsWrapper--2TSJ7 {\n  width: 100%;\n  margin-top: 40px;\n  position: relative;\n}\n\n.Quiz-module__prevButton--EFVAY {\n  position: absolute;\n  left: 0px;\n  bottom: 0px;\n  border-radius: 5px;\n  background: #800080;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #ffc0cb, #800080);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #ffc0cb, #800080); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  width: 100px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n}\n\n.Quiz-module__nextButton--30OK0 {\n  position: absolute;\n  right: 0px;\n  bottom: 0px;\n  border-radius: 5px;\n  background: #642B73;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  width: 100px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n}\n\n\n.Quiz-module__animateWrapper--3j3Nj {\n  z-index: 100;\n}\n\n.Quiz-module__beginButton--o2RTW {\n  border-radius: 5px;\n  background: #642B73;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  color: white;\n  padding: 5px;\n  border: none;\n  cursor: pointer;\n  font-weight: bold;\n  z-index: 202;\n  height: 60px;\n  width: 25vw;\n  font-size: 1.5vw;\n  margin-top: 20px;\n  text-transform: uppercase;\n  /* font-family: cursive; */\n}\n\n\n.Quiz-module__welcome--2Wq4I {\n  color: #50093f;\n}\n\n.Quiz-module__resultsLi--20kkt {\n  list-style: none;\n  width: 500px;\n  display: flex;\n  justify-content: space-between;\n  font-size: 20px;\n  padding: 8px;\n  border-radius: 5px;\n  border: 1px solid black;\n\n\n}\n\n.Quiz-module__correct--2cajk {\n  background-color: rgb(4,254,0);\n}\n\n.Quiz-module__incorrect--21oKJ {\n  background-color: red;\n}\n\n.Quiz-module__resultsLi--20kkt > span > b {\n  margin-right: 5px;\n}\n\n\n.Quiz-module__resultsWrapper--3Lv_L {\n  border-radius: 5px;\n   -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n}\n\n.Quiz-module__resultsOuterWrapper--qIviW {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n.Quiz-module__resultsOuterWrapper--qIviW > h1 {\n  margin-top: 50px;\n  margin-bottom: 50px;\n\n}\n\n.Quiz-module__resultsOuterWrapper--qIviW > h1 > b {\n  margin-left: 7px;\n}", ""]);
 // Exports
 exports.locals = {
 	"quizWrapper": "Quiz-module__quizWrapper--1ekNE",
@@ -2204,7 +2465,8 @@ exports.locals = {
 	"resultsLi": "Quiz-module__resultsLi--20kkt",
 	"correct": "Quiz-module__correct--2cajk",
 	"incorrect": "Quiz-module__incorrect--21oKJ",
-	"resultsWrapper": "Quiz-module__resultsWrapper--3Lv_L"
+	"resultsWrapper": "Quiz-module__resultsWrapper--3Lv_L",
+	"resultsOuterWrapper": "Quiz-module__resultsOuterWrapper--qIviW"
 };
 module.exports = exports;
 
@@ -2223,7 +2485,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".SessionForm-module__modalBg--2UNNx {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  right: 0;\n  left: 0;\n  background: rgba(0, 0, 0, 0.7);\n  z-index: 100000;\n}\n\n.SessionForm-module__modalChild--3Eeuv {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 10000;\n  background-color: black;\n  width: 500px;\n  height: 400px;\n  border-radius: 7px;\n  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n\n}\n\n.SessionForm-module__form--2quw4 > h1 {\n  margin-top: 50px;\n  margin-bottom: 50px;\n  color: white;\n  letter-spacing: .5rem;\n    font-size: 40px;\n\n\n}\n\n.SessionForm-module__form--2quw4 {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  background-color: #B13D6F;\n  background-color: #973771;\n  border-radius: 7px;\n\n}\n\n.SessionForm-module__formLabel--3zJaa > h4 {\n  margin-bottom: 5px;\n  color: white;\n  font-size: 20px;\n}\n\n.SessionForm-module__formLabel--3zJaa > input {\n  width: 100%;\n  height: 20px;\n  border-radius: 10px;\n  padding-left: 5px;\n\n}\n\n.SessionForm-module__formLabel--3zJaa {\n  width: 60%;\n  border-radius: 10px;\n  margin-bottom: 5px;\n}", ""]);
+exports.push([module.id, ".SessionForm-module__modalBg--2UNNx {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  right: 0;\n  left: 0;\n  background: rgba(0, 0, 0, 0.7);\n  z-index: 100000;\n}\n\n.SessionForm-module__modalChild--3Eeuv {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 10000;\n  background-color: black;\n  width: 500px;\n  height: 400px;\n  border-radius: 7px;\n  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n\n}\n\n.SessionForm-module__form--2quw4 > h1 {\n  margin-top: 50px;\n  margin-bottom: 50px;\n  color: white;\n  letter-spacing: .5rem;\n    font-size: 40px;\n\n\n}\n\n.SessionForm-module__form--2quw4 {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  background-color: #B13D6F;\n  background-color: #973771;\n  border-radius: 7px;\n\n\n}\n\n.SessionForm-module__form--2quw4 > button {\n  background: #11998e;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  border: none;\n  border-radius: 7px;\n  padding: 7px;\n  margin-top: 7px;\n  width: 30%;\n  font-weight: bolder;\n  font-size: 17px;\n  cursor: pointer;\n  color: rgb(61, 4, 42);\n\n\n}\n\n.SessionForm-module__formLabel--3zJaa > h4 {\n  margin-bottom: 5px;\n  color: white;\n  font-size: 20px;\n}\n\n.SessionForm-module__formLabel--3zJaa > input {\n  width: 100%;\n  height: 20px;\n  border-radius: 10px;\n  padding-left: 5px;\n\n}\n\n.SessionForm-module__formLabel--3zJaa {\n  width: 60%;\n  border-radius: 10px;\n  margin-bottom: 5px;\n}", ""]);
 // Exports
 exports.locals = {
 	"modalBg": "SessionForm-module__modalBg--2UNNx",
