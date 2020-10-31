@@ -159,11 +159,38 @@ z-index: 99;
 @keyframes fall{
     0%{
       transform: translateY(0) translateX(0) rotate(0deg);
-
     }
     100%{
-        
-         transform: translateY(-1200px) translateX(750px) rotate(720deg);
-
+      transform: translateY(-1200px) translateX(750px) rotate(740deg);
       }
     }
+
+
+
+@media screen and (max-device-width: 600px) {
+  .scoresQuizChatWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .leaderBoard {
+    display: none;
+  }
+
+  .appWrapper {
+    overflow-y: scroll;
+  }
+
+}
+
+
+
+.appWrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.appWrapper {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

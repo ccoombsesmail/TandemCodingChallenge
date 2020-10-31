@@ -7,7 +7,7 @@ class Chat extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      messages: []
+      messages: [],
     }
     this.bottom = React.createRef()
   }

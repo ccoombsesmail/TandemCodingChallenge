@@ -48,6 +48,7 @@ class App extends React.Component {
   login(currentUser) {
     this.setState({
       currentUser,
+      showLogin: false,
     })
   }
 
@@ -96,11 +97,11 @@ class App extends React.Component {
          showLogin === true ? <SessionForm login={this.login} formType={formType} toggleForm={this.toggleForm} /> : null
         }
         <div className={styles.scoresQuizChatWrapper}>
-          <Animated animationIn="slideInLeft">
+          <Animated className={styles.leaderBoard} animationIn="slideInLeft">
             <LeaderBoard score={score} />
           </Animated>
           <Quiz currentUser={currentUser} receiveScore={this.receiveScore} />
-          <Animated animationIn="slideInRight">
+          <Animated className={styles.chat}  animationIn="slideInRight">
             <Chat currentUser={currentUser} />
           </Animated>
         </div>
