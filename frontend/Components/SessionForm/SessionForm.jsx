@@ -27,20 +27,17 @@ class SessionForm extends React.Component {
         .then((res) => this.props.login(res.user))
         .fail((res) => {
           this.setState({ errors: res.responseJSON })
-          console.log(res)
         })
     } else {
       createSession({ username, password })
         .then((res) => this.props.login(res.user))
         .fail((res) => {
           this.setState({ errors: res.responseJSON })
-          console.log(res)
         })
     }
   }
 
   render() {
-    console.log(this.state.errors)
     const { toggleForm, formType } = this.props
     const { username, password, errors } = this.state
     return (
