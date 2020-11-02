@@ -29,6 +29,10 @@ Envirornment/engines:
 - Navigate to http://localhost:3000
 
 
+### Quiz
+
+The quiz is managed though several React components. State is used to keep track of the currently selected answers, and then some helper function calculate the number of correct answers upon submission.
+
 
 ### Live Chat
 
@@ -61,6 +65,11 @@ def subscribed
   def speak(data)
     broadcastMessage = {message: data['body'], username: data['username'], color: data['color']}
     ChatChannel.broadcast_to("chat_room", broadcastMessage)
-
   end
 ```
+
+
+
+### Testing and Future Goals
+
+I setup the project for Unit Testing with Jest / Enzyme. I did not get to write any tests yet, but that will be a future endevor. 
