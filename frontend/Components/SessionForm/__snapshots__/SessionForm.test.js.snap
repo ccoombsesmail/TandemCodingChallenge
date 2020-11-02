@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SessionForm should render correctly in "debug" mode 1`] = `
+<div
+  className="modalBg"
+>
+  <div
+    className="modalChild"
+    onClick={[Function]}
+  >
+    <form
+      className="form"
+      onSubmit={[Function]}
+    >
+      <h1 />
+      <label
+        className="formLabel"
+      >
+        <h4>
+          Username
+        </h4>
+        <input
+          autoComplete="off"
+          className="formInput"
+          id="username"
+          maxLength={16}
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+      </label>
+      <label
+        className="formLabel"
+      >
+        <h4>
+          Password
+        </h4>
+        <input
+          className="formInput"
+          onChange={[Function]}
+          type="password"
+          value=""
+        />
+      </label>
+      <button
+        type="submit"
+      />
+    </form>
+  </div>
+</div>
+`;

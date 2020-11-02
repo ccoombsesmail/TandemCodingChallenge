@@ -8,8 +8,9 @@ class SessionForm extends React.Component {
     this.state = {
       username: '',
       password: '',
+      errors: null,
     }
-    // this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   update(type) {
@@ -19,17 +20,29 @@ class SessionForm extends React.Component {
   }
 
   handleSubmit(e, formType) {
+    const { username, password } = this.state
     e.preventDefault()
     if (formType === 'Sign Up') {
-      createUser(this.state).then((res) => this.props.login(res.user))
+      createUser({ username, password })
+        .then((res) => this.props.login(res.user))
+        .fail((res) => {
+          this.setState({ errors: res.responseJSON })
+          console.log(res)
+        })
     } else {
-      createSession(this.state).then((res) => this.props.login(res.user))
+      createSession({ username, password })
+        .then((res) => this.props.login(res.user))
+        .fail((res) => {
+          this.setState({ errors: res.responseJSON })
+          console.log(res)
+        })
     }
   }
 
   render() {
+    console.log(this.state.errors)
     const { toggleForm, formType } = this.props
-    const { username, password } = this.state
+    const { username, password, errors } = this.state
     return (
       <div className={styles.modalBg} onClick={toggleForm}>
         <div className={styles.modalChild} onClick={e => e.stopPropagation()}>
@@ -41,10 +54,16 @@ class SessionForm extends React.Component {
               <h4>Username</h4>
               <input maxLength={16} id="username" className={styles.formInput} type="text" value={username} onChange={this.update('username')} autoComplete="off" />
             </label>
+            {
+              errors && errors.usernameError ? <h3>{errors.usernameError}</h3> : null
+            }
             <label className={styles.formLabel}>
               <h4>Password</h4>
               <input className={styles.formInput} type="password" value={password} onChange={this.update('password')} />
             </label>
+            {
+              errors && errors.passwordError ? <h3>{errors.passwordError}</h3> : null
+            }
             <button type="submit">{formType}</button>
           </form>
         </div>

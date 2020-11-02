@@ -556,10 +556,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var animate_css_animate_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! animate.css/animate.min.css */ "./node_modules/animate.css/animate.min.css");
 /* harmony import */ var animate_css_animate_min_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(animate_css_animate_min_css__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_animated_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-animated-css */ "./node_modules/react-animated-css/lib/index.js");
-/* harmony import */ var _util_question_gen_util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../util/question_gen_util */ "./frontend/util/question_gen_util.js");
-/* harmony import */ var _Question_module_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Question.module.css */ "./frontend/Components/Quiz/Question/Question.module.css");
-/* harmony import */ var _Question_module_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_Question_module_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _util_question_gen_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../util/question_gen_util */ "./frontend/util/question_gen_util.js");
+/* harmony import */ var _Question_module_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Question.module.css */ "./frontend/Components/Quiz/Question/Question.module.css");
+/* harmony import */ var _Question_module_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_Question_module_css__WEBPACK_IMPORTED_MODULE_3__);
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -585,7 +584,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
 var Question = function Question(_ref) {
   var question = _ref.question,
       setAnswer = _ref.setAnswer,
@@ -598,32 +596,32 @@ var Question = function Question(_ref) {
       setChoices = _useState2[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var answers = _toConsumableArray(question.incorrect);
-
-    answers.push(question.correct);
+    var answers;
 
     if (currentAnswers[questionNum] === null) {
-      (0,_util_question_gen_util__WEBPACK_IMPORTED_MODULE_3__.shuffle)(answers);
+      answers = _toConsumableArray(question.incorrect);
+      answers.push(question.correct);
+      (0,_util_question_gen_util__WEBPACK_IMPORTED_MODULE_2__.shuffle)(answers);
+    } else {
+      answers = currentAnswers[questionNum][2]; // Get saved answer choices/order from currentAnswers
     }
 
     setChoices(answers);
   }, [question]);
-
-  var handleAnswerClick = function handleAnswerClick() {};
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: (_Question_module_css__WEBPACK_IMPORTED_MODULE_4___default().questionWrapper)
+    className: (_Question_module_css__WEBPACK_IMPORTED_MODULE_3___default().questionWrapper)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, question.question), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, choices.map(function (answer, answerNum) {
-    var liStyles = [(_Question_module_css__WEBPACK_IMPORTED_MODULE_4___default().answer)];
+    var liStyles = [(_Question_module_css__WEBPACK_IMPORTED_MODULE_3___default().answer)];
 
     if (currentAnswers[questionNum] && answer === currentAnswers[questionNum][0]) {
-      liStyles.push((_Question_module_css__WEBPACK_IMPORTED_MODULE_4___default().selected));
+      liStyles.push((_Question_module_css__WEBPACK_IMPORTED_MODULE_3___default().selected));
     }
 
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+      key: answerNum,
       className: liStyles.join(' '),
       onClick: function onClick() {
-        return setAnswer(answer, answerNum);
+        return setAnswer(answer, answerNum, choices);
       }
     }, answer);
   })));
@@ -769,8 +767,8 @@ var Quiz = function Quiz(_ref) {
     setShowWelcome(false);
   };
 
-  var setAnswer = function setAnswer(selectedAnswer, answerNum) {
-    currentAnswers[questionNum] = [selectedAnswer, answerNum];
+  var setAnswer = function setAnswer(selectedAnswer, answerNum, choices) {
+    currentAnswers[questionNum] = [selectedAnswer, answerNum, choices];
     setCurrentAnswers(_toConsumableArray(currentAnswers));
   };
 
@@ -921,9 +919,10 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       username: '',
-      password: ''
-    }; // this.handleSubmit = this.handleSubmit.bind(this)
-
+      password: '',
+      errors: null
+    };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -941,15 +940,36 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(e, formType) {
       var _this3 = this;
 
+      var _this$state = this.state,
+          username = _this$state.username,
+          password = _this$state.password;
       e.preventDefault();
 
       if (formType === 'Sign Up') {
-        (0,_util_session_api_util__WEBPACK_IMPORTED_MODULE_2__.createUser)(this.state).then(function (res) {
+        (0,_util_session_api_util__WEBPACK_IMPORTED_MODULE_2__.createUser)({
+          username: username,
+          password: password
+        }).then(function (res) {
           return _this3.props.login(res.user);
+        }).fail(function (res) {
+          _this3.setState({
+            errors: res.responseJSON
+          });
+
+          console.log(res);
         });
       } else {
-        (0,_util_session_api_util__WEBPACK_IMPORTED_MODULE_2__.createSession)(this.state).then(function (res) {
+        (0,_util_session_api_util__WEBPACK_IMPORTED_MODULE_2__.createSession)({
+          username: username,
+          password: password
+        }).then(function (res) {
           return _this3.props.login(res.user);
+        }).fail(function (res) {
+          _this3.setState({
+            errors: res.responseJSON
+          });
+
+          console.log(res);
         });
       }
     }
@@ -958,12 +978,14 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
+      console.log(this.state.errors);
       var _this$props = this.props,
           toggleForm = _this$props.toggleForm,
           formType = _this$props.formType;
-      var _this$state = this.state,
-          username = _this$state.username,
-          password = _this$state.password;
+      var _this$state2 = this.state,
+          username = _this$state2.username,
+          password = _this$state2.password,
+          errors = _this$state2.errors;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: (_SessionForm_module_css__WEBPACK_IMPORTED_MODULE_1___default().modalBg),
         onClick: toggleForm
@@ -987,14 +1009,14 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
         value: username,
         onChange: this.update('username'),
         autoComplete: "off"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+      })), errors && errors.usernameError ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, errors.usernameError) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         className: (_SessionForm_module_css__WEBPACK_IMPORTED_MODULE_1___default().formLabel)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", null, "Password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         className: (_SessionForm_module_css__WEBPACK_IMPORTED_MODULE_1___default().formInput),
         type: "password",
         value: password,
         onChange: this.update('password')
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      })), errors && errors.passwordError ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, errors.passwordError) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         type: "submit"
       }, formType))));
     }
@@ -2620,10 +2642,6 @@ module.exports = exports;
   \***************************************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: __webpack_exports__, module, __webpack_require__, module.id */
-/*! CommonJS bailout: exports is used directly at 3:0-7 */
-/*! CommonJS bailout: exports.push(...) prevents optimization as exports is passed as call context at 5:0-12 */
-/*! CommonJS bailout: exports is used directly at 16:17-24 */
-/*! CommonJS bailout: module.exports is used directly at 16:0-14 */
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports
@@ -2787,7 +2805,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".SessionForm-module__modalBg--2UNNx {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  right: 0;\n  left: 0;\n  background: rgba(0, 0, 0, 0.7);\n  z-index: 100000;\n}\n\n.SessionForm-module__modalChild--3Eeuv {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 10000;\n  background-color: black;\n  width: 500px;\n  height: 400px;\n  border-radius: 7px;\n  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n\n}\n\n.SessionForm-module__form--2quw4 > h1 {\n  margin-top: 50px;\n  margin-bottom: 50px;\n  color: white;\n  letter-spacing: .5rem;\n    font-size: 40px;\n\n\n}\n\n.SessionForm-module__form--2quw4 {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  background-color: #B13D6F;\n  background-color: #973771;\n  border-radius: 7px;\n\n\n}\n\n.SessionForm-module__form--2quw4 > button {\n  background: #11998e;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  border: none;\n  border-radius: 7px;\n  padding: 7px;\n  margin-top: 7px;\n  width: 30%;\n  font-weight: bolder;\n  font-size: 17px;\n  cursor: pointer;\n  color: rgb(61, 4, 42);\n\n\n}\n\n.SessionForm-module__formLabel--3zJaa > h4 {\n  margin-bottom: 5px;\n  color: white;\n  font-size: 20px;\n}\n\n.SessionForm-module__formLabel--3zJaa > input {\n  width: 100%;\n  height: 20px;\n  border-radius: 10px;\n  padding-left: 5px;\n\n}\n\n.SessionForm-module__formLabel--3zJaa {\n  width: 60%;\n  border-radius: 10px;\n  margin-bottom: 5px;\n}", ""]);
+exports.push([module.id, ".SessionForm-module__modalBg--2UNNx {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  right: 0;\n  left: 0;\n  background: rgba(0, 0, 0, 0.7);\n  z-index: 100000;\n}\n\n.SessionForm-module__modalChild--3Eeuv {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 10000;\n  background-color: black;\n  width: 500px;\n  height: 400px;\n  border-radius: 7px;\n  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);\n\n}\n\n.SessionForm-module__form--2quw4 > h1 {\n  margin-top: 50px;\n  margin-bottom: 50px;\n  color: white;\n  letter-spacing: .5rem;\n    font-size: 40px;\n\n\n}\n\n.SessionForm-module__form--2quw4 > h3 {\n  margin: 5px;\n  font-size: 18px;\n  color: red;\n}\n\n.SessionForm-module__form--2quw4 {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  background-color: #B13D6F;\n  background-color: #973771;\n  border-radius: 7px;\n\n\n}\n\n.SessionForm-module__form--2quw4 > button {\n  background: #11998e;  /* fallback for old browsers */\n  background: -webkit-linear-gradient(to right, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */\n  background: linear-gradient(to right, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n  border: none;\n  border-radius: 7px;\n  padding: 7px;\n  margin-top: 7px;\n  width: 30%;\n  font-weight: bolder;\n  font-size: 17px;\n  cursor: pointer;\n  color: rgb(61, 4, 42);\n\n\n}\n\n.SessionForm-module__formLabel--3zJaa > h4 {\n  margin-bottom: 5px;\n  color: white;\n  font-size: 20px;\n}\n\n.SessionForm-module__formLabel--3zJaa > input {\n  width: 100%;\n  height: 20px;\n  border-radius: 10px;\n  padding-left: 5px;\n\n}\n\n.SessionForm-module__formLabel--3zJaa {\n  width: 60%;\n  border-radius: 10px;\n  margin-bottom: 5px;\n}", ""]);
 // Exports
 exports.locals = {
 	"modalBg": "SessionForm-module__modalBg--2UNNx",

@@ -13,7 +13,14 @@ class Api::UsersController < ApplicationController
         login!(@user)
         render :new_user
     else
-        render json: @user.errors.full_messages, status: 422
+        errors = @user.errors.full_messages
+        if errors.length == 2
+          errors = { usernameError: errors[0], passwordError: errors[1] }
+        else
+          errors = { passwordError: errors[0] }
+        end
+        
+        render json: errors, status: 422
     end
 
     end

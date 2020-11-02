@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import 'animate.css/animate.min.css'
-import { Animated } from 'react-animated-css'
 import { shuffle } from '../../../util/question_gen_util'
 import styles from './Question.module.css'
 
 const Question = ({ question, setAnswer, questionNum, currentAnswers }) => {
   const [choices, setChoices] = useState([])
   useEffect(() => {
-    const answers = [...question.incorrect]
-    answers.push(question.correct)
+    let answers
     if (currentAnswers[questionNum] === null) {
+      answers = [...question.incorrect]
+      answers.push(question.correct)
       shuffle(answers)
+    } else {
+      answers = currentAnswers[questionNum][2]  // Get saved answer choices/order from currentAnswers
     }
     setChoices(answers)
   }, [question])
-
-  const handleAnswerClick = () => {
-
-  }
 
   return (
     <div className={styles.questionWrapper}>
@@ -32,7 +30,11 @@ const Question = ({ question, setAnswer, questionNum, currentAnswers }) => {
               liStyles.push(styles.selected)
             }
             return (
-              <li className={liStyles.join(' ')} onClick={() => setAnswer(answer, answerNum)}>
+              <li
+                key={answerNum}
+                className={liStyles.join(' ')}
+                onClick={() => setAnswer(answer, answerNum, choices)}
+              >
                 {answer}
               </li>
             )

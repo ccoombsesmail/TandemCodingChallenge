@@ -52,8 +52,8 @@ const Quiz = ({ currentUser, receiveScore }) => {
     setShowWelcome(false)
   }
 
-  const setAnswer = (selectedAnswer, answerNum) => {
-    currentAnswers[questionNum] = [selectedAnswer, answerNum]
+  const setAnswer = (selectedAnswer, answerNum, choices) => {
+    currentAnswers[questionNum] = [selectedAnswer, answerNum, choices]
     setCurrentAnswers([...currentAnswers])
   }
 
@@ -125,7 +125,7 @@ const Quiz = ({ currentUser, receiveScore }) => {
               <h1>
                 Your Score:
                 <b>
-                  {numCorrect} / 10 
+                  {numCorrect} / 10
                 </b>
               </h1>
               <ul className={styles.resultsWrapper}>
